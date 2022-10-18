@@ -19,6 +19,11 @@ class CreateTenantsTable extends Migration
             $table->string('id')->primary();
 
             // your custom columns may go here
+            $table->string('name');
+            $table->string('direccion')->nullable();
+            $table->string('email');
+            $table->string('logo')->nullable();
+            $table->string('pagina_web')->nullable();
 
             $table->timestamps();
             $table->json('data')->nullable();
