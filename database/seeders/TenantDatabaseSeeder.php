@@ -22,11 +22,14 @@ class TenantDatabaseSeeder extends Seeder
         $empresa1 = Tenant::create([
             'id' => 'bcp',
             'name' => 'Banco BCP',
+            'email' => 'bcp@gmail.com',
+            
         ]);
 
         $empresa2 = Tenant::create([
             'id' => 'bnb',
             'name' => 'Banco BNB',
+            'email' => 'bnb@gmail.com',
         ]);
 
         // //seed the tenant
