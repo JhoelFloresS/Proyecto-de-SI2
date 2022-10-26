@@ -7,7 +7,9 @@ use Illuminate\Database\Seeder;
 use App\Models\Tenant;
 use App\Models\tenant\Departamento;
 use App\Models\tenant\User;
+use Database\Seeders\tenant\BcpSeeder;
 use Database\Seeders\tenant\BitacoraSeeder;
+use Database\Seeders\tenant\BnbSeeder;
 use Database\Seeders\tenant\DepartamentoSeeder;
 use Database\Seeders\tenant\UserSeeder;
 use Illuminate\Support\Facades\Hash;
@@ -40,15 +42,11 @@ class TenantDatabaseSeeder extends Seeder
         ]);
 
         $empresa1->run( function() {
-            $this->call(DepartamentoSeeder::class);
-            $this->call(UserSeeder::class);
-            $this->call(BitacoraSeeder::class);
+            $this->call(BcpSeeder::class);
         });
 
         $empresa2->run( function() {
-            $this->call(DepartamentoSeeder::class);
-            $this->call(UserSeeder::class);
-            $this->call(BitacoraSeeder::class);
+            $this->call(BnbSeeder::class);
         });
 
         // //seed the tenant

@@ -26,9 +26,5 @@ class DatabaseSeeder extends Seeder
        $this->call(UserSeeder::class);
        $this->call(BitacoraSeeder::class);
 
-       //tenants
-       # $this->call(DepartamentoSeeder::class);
-       # $this->call(UserSeeder::class);
-
     }
 }

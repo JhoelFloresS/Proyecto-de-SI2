@@ -1,12 +1,12 @@
 <?php
 
-namespace Database\Seeders\tenant;
+namespace Database\Seeders\tenant\bnb;
 
 use App\Models\tenant\Bitacora;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class BitacoraSeeder extends Seeder
+class BitacoraSeeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -209,7 +209,5 @@ class BitacoraSeeder extends Seeder
             'ip_maquina' => '198.168.160.45',
             'users_id' => 15,
         ]);
-
-
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace Database\Seeders\tenant;
+namespace Database\Seeders\tenant\bcp;
 
 use App\Models\tenant\Departamento;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DepartamentoSeeder extends Seeder
+class DepartamentoSeeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,8 +15,8 @@ class DepartamentoSeeder extends Seeder
      */
     public function run()
     {
-        //'descripcion' => 'Responsable de: Facturación, Fiscalidad, Cobros y pagos.'
-        Departamento::create([
+         //'descripcion' => 'Responsable de: Facturación, Fiscalidad, Cobros y pagos.'
+         Departamento::create([
             'nombre' => 'Administración',
             'descripcion' => 'Donde se encuentra el personal de gerencia, subgerecia, etc'
             
@@ -37,6 +37,5 @@ class DepartamentoSeeder extends Seeder
             'nombre' => 'RRHH',
             'descripcion' => 'Donde se encuentra el personal de rrhh.'           
         ]);
-
     }
 }
