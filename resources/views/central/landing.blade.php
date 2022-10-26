@@ -7,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>April Template</title>
     <link href="https://fonts.googleapis.com/css?family=Heebo:400,500,700|Fira+Sans:600" rel="stylesheet">
-    <!-- css landing -->
-    <link rel="stylesheet" href="{{asset('css/landing.css')}}">
     <script src="https://unpkg.com/animejs@2.2.0/anime.min.js"></script>
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+
+    <!-- Scripts landing css js-->
+    @vite(['resources/css/landing.css', 'resources/js/landing.js'])
 </head>
 
 <body class="is-boxed has-animations">
@@ -582,7 +583,6 @@
         </footer>
     </div>
 
-    <script src="{{asset('js/landing.js')}}"></script>
 </body>
 
 </html>
