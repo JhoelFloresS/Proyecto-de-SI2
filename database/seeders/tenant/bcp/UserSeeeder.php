@@ -1,13 +1,13 @@
 <?php
 
-namespace Database\Seeders\tenant;
+namespace Database\Seeders\tenant\bcp;
 
 use App\Models\tenant\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
-class UserSeeder extends Seeder
+class UserSeeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,129 +18,128 @@ class UserSeeder extends Seeder
     {
         $password = Hash::make('12345678');
         User::create([
-            'name' => 'Ezequiel Fernandez',
-            'email' => 'ezequiel-fernandez@gmail.com',
+            'name' => 'Admin BCP',
+            'email' => 'admin_bcp@gmail.com',
             'password' => $password,
             'foto' => null,
-            'telefono' => '69465520',
+            'telefono' => '62265520',
             'departamentos_id' => 1
         ]);
         User::create([
-            'name' => 'Carlos Ponce',
-            'email' => 'carlos-ponce@gmail.com',
+            'name' => 'Julio Gonzales',
+            'email' => 'julio_bcp@gmail.com',
             'password' => $password,
             'foto' => null,
-            'telefono' => '65152340',
+            'telefono' => '65152110',
             'departamentos_id' => 1
         ]);
 
         User::create([
-            'name' => 'Juan Mendoza Pereira',
-            'email' => 'juan-mendoza@gmail.com',
+            'name' => 'Lucia Mendoza Fernandez',
+            'email' => 'lucia_bcp@gmail.com',
             'password' => $password,
             'foto' => null,
-            'telefono' => '75174852',
+            'telefono' => '75173352',
             'departamentos_id' => 2
         ]);
         User::create([
-            'name' => 'Marco Antonio Soliz',
-            'email' => 'marco-soliz@gmail.com',
+            'name' => 'Antonio Burgoa',
+            'email' => 'antonio_bcp@gmail.com',
             'password' => $password,
             'foto' => null,
-            'telefono' => '63295852',
+            'telefono' => '63295662',
             'departamentos_id' => 2
         ]);
         User::create([
-            'name' => 'Lucia Rodrigues',
-            'email' => 'lucia-rodrigues@gmail.com',
+            'name' => 'Juana Torrez Domingues',
+            'email' => 'juana_bcp@gmail.com',
             'password' => $password,
             'foto' => null,
-            'telefono' => '63295811',
+            'telefono' => '65595811',
             'departamentos_id' => 2
         ]);
 
         User::create([
-            'name' => 'Enrique Iglesias',
-            'email' => 'enrique-iglesias@gmail.com',
+            'name' => 'Carlos Mancilla Salvatierra',
+            'email' => 'carlos_bcp@gmail.com',
             'password' => $password,
             'foto' => null,
-            'telefono' => '64140472',
+            'telefono' => '64114472',
             'departamentos_id' => 3
         ]);
         User::create([
-            'name' => 'Juan Luis Guerra',
-            'email' => 'juan-guerra@gmail.com',
+            'name' => 'Karla Soliz',
+            'email' => 'karla_bcp@gmail.com',
             'password' => $password,
             'foto' => null,
-            'telefono' => '64140472',
+            'telefono' => '64111472',
             'departamentos_id' => 3
         ]);
         User::create([
-            'name' => 'Alberto Soliz Montenegro',
-            'email' => 'alberto-soliz@gmail.com',
+            'name' => 'Horacio Conde Torrez',
+            'email' => 'horacio_bcp@gmail.com',
             'password' => $password,
             'foto' => null,
-            'telefono' => '74191823',
+            'telefono' => '74001823',
             'departamentos_id' => 3
         ]);
         User::create([
-            'name' => 'Patrick Smith',
-            'email' => 'patrick-smith@gmail.com',
+            'name' => 'Yunior Martinez Sandoval',
+            'email' => 'yunior_bcp@gmail.com',
             'password' => $password,
             'foto' => null,
-            'telefono' => '69181875',
+            'telefono' => '69181325',
             'departamentos_id' => 3
         ]);
         User::create([
-            'name' => 'Pamela Rojas',
-            'email' => 'pamela-rojas@gmail.com',
+            'name' => 'Angela Cardenal Pedraza',
+            'email' => 'angela_bcp@gmail.com',
             'password' => $password,
             'foto' => null,
-            'telefono' => '68758003',
+            'telefono' => '68767003',
             'departamentos_id' => 3
         ]);
 
         User::create([
-            'name' => 'Julio Mendoza',
-            'email' => 'julio-mendoza@gmail.com',
+            'name' => 'Jhon Torrez',
+            'email' => 'jhon_bcp@gmail.com',
             'password' => $password,
             'foto' => null,
-            'telefono' => '62141480',
+            'telefono' => '62181480',
             'departamentos_id' => 4
         ]);
         User::create([
-            'name' => 'Maria Salvatierra Torrez',
-            'email' => 'maria-salvatierra@gmail.com',
+            'name' => 'Maria Salas Rodrigues',
+            'email' => 'maria_bcp@gmail.com',
             'password' => $password,
             'foto' => null,
-            'telefono' => '74185857',
+            'telefono' => '74199857',
             'departamentos_id' => 4
         ]);
 
         User::create([
             'name' => 'Pedro Burgoa',
-            'email' => 'pedro-burgoa@gmail.com',
+            'email' => 'pedro_bcp@gmail.com',
             'password' => $password,
             'foto' => null,
-            'telefono' => '74196965',
+            'telefono' => '74190065',
             'departamentos_id' => 5
         ]);
         User::create([
-            'name' => 'Jose Valverde',
-            'email' => 'jose-valverde@gmail.com',
+            'name' => 'Jose Burgoa Valverde',
+            'email' => 'jose_bcp@gmail.com',
             'password' => $password,
             'foto' => null,
-            'telefono' => '63152954',
+            'telefono' => '69852954',
             'departamentos_id' => 5
         ]);
         User::create([
-            'name' => 'Sebastian Medrano Peres',
-            'email' => 'sebastian-medrano@gmail.com',
+            'name' => 'Sebastian Montenegro Peres',
+            'email' => 'sebastian_bcp@gmail.com',
             'password' => $password,
             'foto' => null,
-            'telefono' => '63120987',
+            'telefono' => '63120901',
             'departamentos_id' => 5
         ]);
-
     }
 }
