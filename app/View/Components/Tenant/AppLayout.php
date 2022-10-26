@@ -5,15 +5,18 @@ namespace App\View\Components\Tenant;
 use Illuminate\View\Component;
 
 class AppLayout extends Component
-{
+{   
+
+
+    public $title;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($title = 'laravel')
     {
-        //
+        $this->title = $title;
     }
 
     /**

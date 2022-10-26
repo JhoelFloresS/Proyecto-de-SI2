@@ -103,6 +103,10 @@ class TenancyServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        \Stancl\Tenancy\Middleware\InitializeTenancyByPath::$onFail = function () {
+            return redirect('/');
+        };    
+        
         $this->bootEvents();
         $this->mapRoutes();
 
