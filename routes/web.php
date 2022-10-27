@@ -24,4 +24,7 @@ Route::get('/dashboard', function () {
     return view('central.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
+/* Landing Page */
+Route::get('/landing', function () {
+    return view('central.landing');
+});
