@@ -19,7 +19,7 @@ class BnbSeeder extends Seeder
     {
         $this->call(DepartamentoSeeeder::class);
         $this->call(UserSeeeder::class);
-        $this->call(BitacoraSeeeder::class);
+        //$this->call(BitacoraSeeeder::class);
         
     }
 }
