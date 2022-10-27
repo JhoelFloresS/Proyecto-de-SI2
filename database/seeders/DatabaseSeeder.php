@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
        $this->call(PlanSeeder::class);
        $this->call(SuscripcionSeeder::class);
        $this->call(UserSeeder::class);
-       $this->call(BitacoraSeeder::class);
+       //$this->call(BitacoraSeeder::class);
 
     }
 }

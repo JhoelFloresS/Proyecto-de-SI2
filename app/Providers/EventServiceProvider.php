@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\RegistrarBitacora;
+use App\Events\tenant\RegistrarBitacoraTenant;
+use App\Listeners\RegistrarBitacoraStore;
+use App\Listeners\tenant\RegistrarBitacoraStoreTenant;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +22,18 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+
+        //central
+        RegistrarBitacora::class => [
+            RegistrarBitacoraStore::class,
+        ],
+
+        //tenant
+        RegistrarBitacoraTenant::class => [
+            RegistrarBitacoraStoreTenant::class,
+        ],
+        
+
     ];
 
     /**

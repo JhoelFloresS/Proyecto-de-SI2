@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\RegistrarBitacora;
+use App\Events\tenant\RegistrarBitacoraTenant;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
@@ -33,6 +35,18 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
+        // Auth::user()->session->get('ip_address');
+
+        if(empty(tenant('id')))
+            event(new RegistrarBitacora([
+                'accion' => 'Inició sesión el usuario: '.Auth::user()->name
+            ])); 
+        else
+            event(new RegistrarBitacoraTenant([
+                'accion' => 'Inició sesión el usuario: '.Auth::user()->name,
+            ]));
+            
+        
         $request->session()->regenerate();
 
         return redirect()->intended(RouteServiceProvider::getHome());
@@ -46,6 +60,15 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request)
     {
+        if(empty(tenant('id')))
+            event(new RegistrarBitacora([
+                'accion' => 'Cerró sesión el usuario: '.Auth::user()->name
+            ])); 
+        else
+            event(new RegistrarBitacoraTenant([
+                'accion' => 'Cerró sesión el usuario: '.Auth::user()->name
+            ]));
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
