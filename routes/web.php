@@ -28,3 +28,13 @@ Route::get('/dashboard', function () {
 Route::get('/landing', function () {
     return view('central.landing');
 });
+
+/* Formulario */
+Route::get('/formulario', function () {
+    return view('central.formulario');
+});
+
+/* Credit Card */
+Route::get('/credit-card', function () {
+    return view('central.credit-card');
+});
