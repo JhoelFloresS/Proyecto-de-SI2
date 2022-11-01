@@ -331,6 +331,10 @@
                             </div>
                         </div>
                         <div class="features-wrap">
+                            <?php
+                            $planes = DB::table('planes')->get();
+                            ?>
+                            @foreach($planes as $plan)
                             <div class="feature text-center is-revealing">
                                 <div class="feature-inner">
                                     <div class="feature-icon" style="background:#FFD2DA;">
@@ -341,11 +345,15 @@
                                             </g>
                                         </svg>
                                     </div>
-                                    <h4 class="feature-title h3-mobile mb-8">Powerful</h4>
-                                    <p class="text-sm">A pseudo-Latin text used in web design, layout, and printing in place of English to emphasise design elements.</p>
+                                    <h4 class="feature-title h3-mobile mb-8">{{$plan->nombre}}</h4>
+                                    <p class="text-sm">{{$plan->descripcion}}</p>
+                                    <p>Monto: {{$plan->precio}}</p>
+                                    <!-- button color primary -->
+                                    <a class="button button-primary button-shadow button-block" href="\formulario">Solicitar</a>
                                 </div>
                             </div>
-                            <div class="feature text-center is-revealing">
+                            @endforeach
+                            <!-- <div class="feature text-center is-revealing">
                                 <div class="feature-inner">
                                     <div class="feature-icon" style="background:#FFD8CD;">
                                         <svg width="88" height="88" xmlns="http://www.w3.org/2000/svg">
@@ -387,7 +395,7 @@
                                     <h4 class="feature-title h3-mobile mb-8">Powerful</h4>
                                     <p class="text-sm">A pseudo-Latin text used in web design, layout, and printing in place of English to emphasise design elements.</p>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
