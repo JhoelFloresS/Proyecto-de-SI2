@@ -31,7 +31,7 @@
         </ul>
       </li>
       <li class="">
-        <i class="uil-folder"></i><a href="#"> File manager</a>
+        <i class="uil-folder"></i><a href="{{route('tenant.backups',tenant('id'))}}">backups</a>
       </li>
       <li class="has-dropdown">
         <i class="uil-calendar-alt"></i><a href="#"> Calender</a>

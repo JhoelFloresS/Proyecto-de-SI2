@@ -34,4 +34,12 @@ Route::prefix('/{tenant}')->middleware([
     Route::get('/dashboard', function () {
         return view('tenant.dashboard');
     })->middleware(['auth', 'auth.session'])->name('tenant.dashboard');
+
+   //backups
+    Route::get('/backups',[App\Http\Controllers\tenant\backupController::class,'index'] )
+    ->middleware(['auth', 'auth.session'])->name('tenant.backups');
+
+    Route::post('/backups/crear',[App\Http\Controllers\tenant\backupController::class,'create'])
+    ->middleware(['auth', 'auth.session'])->name('tenant.backups.crear');
+
 });
