@@ -1,13 +1,14 @@
 <x-guest-layout>
     <x-auth-card>
         <div>
-            <h1>
-                Tenant is {{tenant('id')}}
+            <h1 class="text-center mx-2 text-gray-100">
+                Banco {{ strtoupper(tenant('id')) }}
             </h1>
         </div>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+            <a href="/{{tenant('id')}}/login">
+                {{-- <x-application-logo class="w-20 h-20 fill-current text-gray-300" /> --}}
+                <div class=" rounded-md w-20 h-20 fill-current text-gray-300" style="background-image:url('https://img.freepik.com/vector-premium/ilustracion-gato-colorido-estilo-pop-art_373096-980.jpg'); background-repeat: no-repeat; background-size: cover;"></div>
             </a>
         </x-slot>
 
@@ -19,18 +20,18 @@
 
             <!-- Email Address -->
             <div>
-                <x-input-label for="email" :value="__('Email')" />
+                <x-input-label for="email" :value="__('Email')" class="text-gray-200"/>
 
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-text-input id="email" class="block mt-1 w-full bg-gray-200" type="email" name="email" :value="old('email')" required autofocus />
 
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
-                <x-input-label for="password" :value="__('Password')" />
+                <x-input-label for="password" :value="__('Password')" class="text-gray-200"/>
 
-                <x-text-input id="password" class="block mt-1 w-full"
+                <x-text-input id="password" class="block mt-1 w-full bg-gray-200"
                                 type="password"
                                 name="password"
                                 required autocomplete="current-password" />
@@ -40,21 +41,21 @@
 
             <!-- Remember Me -->
             <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                <label for="remember_me" class="inline-flex items-center ">
+                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-gray-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
+                    <span class="ml-2 text-sm text-gray-100">{{ __('Remember me') }}</span>
                 </label>
             </div>
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('tenant.password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('tenant.password.request', tenant('id')) }}">
+                    <a class="underline text-sm text-gray-200 hover:text-gray-900" href="{{ route('tenant.password.request', tenant('id')) }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
 
-                <x-primary-button class="ml-3">
-                    {{ __('Log in') }}
+                <x-primary-button class="ml-3 bg-gray-600 hover:bg-gray-700">
+                    {{ __('Login') }}
                 </x-primary-button>
             </div>
         </form>
