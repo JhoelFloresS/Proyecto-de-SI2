@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Models\tenant\Bitacora;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByPath;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
@@ -41,5 +42,8 @@ Route::prefix('/{tenant}')->middleware([
 
     Route::post('/backups/crear',[App\Http\Controllers\tenant\backupController::class,'create'])
     ->middleware(['auth', 'auth.session'])->name('tenant.backups.crear');
+
+    Route::get('/bitacoras', [App\Http\Controllers\tenant\BitacoraController::class, 'index'])
+    ->name('tenant.bitacoras.index');
 
 });
