@@ -42,4 +42,11 @@ Route::prefix('/{tenant}')->middleware([
     Route::post('/backups/crear',[App\Http\Controllers\tenant\backupController::class,'create'])
     ->middleware(['auth', 'auth.session'])->name('tenant.backups.crear');
 
+    //personalizacion
+    Route::get('/personalizacion',[App\Http\Controllers\tenant\personalizacionController::class,'index'] )
+    ->middleware(['auth', 'auth.session'])->name('tenant.personalizacion');
+   
+    Route::post('/personalizacion/edit',[App\Http\Controllers\tenant\personalizacionController::class,'edit'] )
+    ->middleware(['auth', 'auth.session'])->name('tenant.personalizacion.edit');
+
 });

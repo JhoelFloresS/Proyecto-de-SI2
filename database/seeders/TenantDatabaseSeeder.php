@@ -32,13 +32,15 @@ class TenantDatabaseSeeder extends Seeder
             'id' => 'bcp',
             'name' => 'Banco BCP',
             'email' => 'bcp@gmail.com',
-            
+            'logo' => 'https://is5-ssl.mzstatic.com/image/thumb/Purple122/v4/f6/5d/a5/f65da547-be28-9052-a574-87f3c76db878/AppIcon-1x_U007emarketing-0-7-0-85-220.png/230x0w.webp'
         ]);
+       
 
         $empresa2 = Tenant::create([
             'id' => 'bnb',
             'name' => 'Banco BNB',
             'email' => 'bnb@gmail.com',
+            'logo' => ' https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/BNB_Logo.png/1010px-BNB_Logo.png'
         ]);
 
         $empresa1->run( function() {
