@@ -24,7 +24,8 @@ class UserSeeder extends Seeder
             'foto' => null,
             'telefono' => '69465520',
             'departamentos_id' => 1
-        ]);
+        ])->assignRole('super-admin');
+
         User::create([
             'name' => 'Carlos Ponce',
             'email' => 'carlos-ponce@gmail.com',
@@ -32,7 +33,7 @@ class UserSeeder extends Seeder
             'foto' => null,
             'telefono' => '65152340',
             'departamentos_id' => 1
-        ]);
+        ])->assignRole('cajero');
 
         User::create([
             'name' => 'Juan Mendoza Pereira',
@@ -41,7 +42,8 @@ class UserSeeder extends Seeder
             'foto' => null,
             'telefono' => '75174852',
             'departamentos_id' => 2
-        ]);
+        ])->assignRole('agente de credito');
+        
         User::create([
             'name' => 'Marco Antonio Soliz',
             'email' => 'marco-soliz@gmail.com',

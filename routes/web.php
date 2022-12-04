@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UsuarioController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +19,6 @@ Route::get('/', function () {
 });
 //ROUTAS PARA LA AUTENTICACION DE LOS USUARIOS
 require __DIR__ . '/auth.php';
-
 
 Route::get('/dashboard', function () {
     return view('central.dashboard');

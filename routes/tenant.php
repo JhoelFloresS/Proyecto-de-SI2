@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByPath;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UsuarioController;
+
 /*
 |--------------------------------------------------------------------------
 | Tenant Routes
@@ -31,7 +34,11 @@ Route::prefix('/{tenant}')->middleware([
     // Route::post('/login', [LoginController::class, 'authenticate'])->name('tenant.login');
     require __DIR__ . '/auth-tenant.php';
 
+
     Route::get('/dashboard', function () {
         return view('tenant.dashboard');
     })->middleware(['auth', 'auth.session'])->name('tenant.dashboard');
+
+    Route::resource('roles',RoleController::class);
+    Route::resource('usuarios',UsuarioController::class);
 });
