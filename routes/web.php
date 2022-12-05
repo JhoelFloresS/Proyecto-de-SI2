@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('central.welcome');
+    return view('central.landing');
 });
 //ROUTAS PARA LA AUTENTICACION DE LOS USUARIOS
 require __DIR__ . '/auth.php';
