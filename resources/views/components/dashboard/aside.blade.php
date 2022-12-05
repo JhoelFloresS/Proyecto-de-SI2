@@ -8,9 +8,12 @@
            alt="">
       <div class="ms-2">
         <h5 class="fs-6 mb-0">
-          <a class="text-decoration-none" href="#">{{{Auth::user()->name}}}</a>
+          <a class="text-decoration-none" href="#">{{Auth::user()->name}}</a>
         </h5>
-        <p class="mt-1 mb-0">Lorem ipsum dolor sit amet consectetur.</p>
+        @foreach(Auth::user()->getRoleNames() as $role)
+          <p class="mt-1 mb-0">{{$role}}</p>
+        @endforeach
+     
       </div>
     </div>
   

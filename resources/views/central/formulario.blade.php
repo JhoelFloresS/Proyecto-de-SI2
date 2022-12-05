@@ -251,21 +251,21 @@
                                         <div class="form-container">
                                             <div class="field-container">
                                                 <label for="name">Nombre</label>
-                                                <input id="name" maxlength="20" type="text">
+                                                <input id="name" name="name_credit_card" maxlength="20" type="text">
                                             </div>
                                             <div class="field-container">
                                                 <label for="cardnumber">Numero Tarjeta</label><span id="generatecard">generate random</span>
-                                                <input id="cardnumber" type="text" pattern="[0-9]*" inputmode="numeric">
+                                                <input id="cardnumber" name="number_credit_card" type="text" pattern="[0-9]*" inputmode="numeric">
                                                 <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                                 </svg>
                                             </div>
                                             <div class="field-container">
                                                 <label for="expirationdate">Expiracion (mm/yy)</label>
-                                                <input id="expirationdate" type="text" pattern="[0-9]*" inputmode="numeric">
+                                                <input id="expirationdate" name="expire_credit_card" type="text" pattern="[0-9]*" inputmode="numeric">
                                             </div>
                                             <div class="field-container">
                                                 <label for="securitycode">Codigo Seguridad</label>
-                                                <input id="securitycode" type="text" pattern="[0-9]*" inputmode="numeric">
+                                                <input id="securitycode" name="code_credit_card" type="text" pattern="[0-9]*" inputmode="numeric">
                                             </div>
                                         </div>
                                     </div>
@@ -298,7 +298,7 @@
                                         <div class="form-row mt-4"><textarea class="multisteps-form__textarea form-control" placeholder="Additional Comments and Requirements"></textarea></div>
                                         <div class="button-row d-flex mt-4">
                                             <button class="btn btn-primary js-btn-prev" type="button" title="Anterior">Anterior</button>
-                                            <button :disabled="!acceptedTerms" class="btn btn-success ml-auto" type="button" title="Confirmar">Confirmar</button>
+                                            <button :disabled="!acceptedTerms" class="btn btn-success ml-auto" type="submit" title="Confirmar">Confirmar</button>
                                         </div>
                                     </div>
                                 </div>

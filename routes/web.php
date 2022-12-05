@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BuscadorEmpresaController;
+use App\Http\Controllers\TenantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -51,5 +52,5 @@ Route::get('/login-buscador', function () {
 Route::post('login-buscador', [BuscadorEmpresaController::class, 'index'])
     ->name('login-buscador');
 
-Route::post('/cretae-empresa', [BuscadorEmpresaController::class, 'create'])
-    ->name('create-empresa');
+Route::post('/create_empresa', [TenantController::class, 'create'])
+    ->name('tenant.create');
