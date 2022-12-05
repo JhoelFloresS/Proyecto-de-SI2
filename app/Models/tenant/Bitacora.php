@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Bitacora extends Model
 {
     use HasFactory;
-
+    
     protected $fillable = [
         'accion',
         'fecha',
+        'fecha_server',
         'ip_maquina',
         'users_id',
     ];
