@@ -8,11 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Bitacora extends Model
 {
     use HasFactory;
-
+    
     protected $fillable = [
         'accion',
         'fecha',
+        'fecha_server',
         'ip_maquina',
         'users_id',
     ];
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'users_id');
+    }
+
 }

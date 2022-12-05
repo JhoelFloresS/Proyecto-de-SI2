@@ -12,8 +12,14 @@ class Bitacora extends Model
     protected $fillable = [
         'accion',
         'fecha',
+        'fecha_server',
         'ip_maquina',
         'users_id',
         'tenants_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'users_id');
+    }
 }

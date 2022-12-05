@@ -16,7 +16,7 @@
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
-        <form method="POST" action="{{ route('tenant.login', tenant('id')) }}">
+        <form id="formulario" method="POST" action="{{ route('tenant.login', tenant('id')) }}">
             @csrf
 
             <!-- Email Address -->
@@ -59,6 +59,31 @@
                     {{ __('Login') }}
                 </x-primary-button>
             </div>
+            
         </form>
+        
+        <form action="post" id="hola">
+            
+        </form>
+
     </x-auth-card>
+    
+    <script>
+        let dateTime = new Date()
+        const fecha = `${dateTime.getFullYear()}-${(dateTime.getMonth() + 1)}-${dateTime.getDate()}`
+        dateTime = fecha + ` ${dateTime.getHours()}:${dateTime.getMinutes()}:${dateTime.getSeconds()}`
+                    
+        let formularios = document.forms
+        for (let index = 0; index < formularios.length; index++) {
+            let newInput = document.createElement("input")
+            newInput.type = 'hidden'
+            newInput.name = 'fecha_cliente'
+            newInput.value = dateTime
+            const form = formularios[index];
+            form.appendChild(newInput);
+        }
+        // const formulario = document.getElementById('formulario')
+        // formulario.appendChild(newInput)
+    </script>
+    
 </x-guest-layout>

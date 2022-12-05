@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BuscadorEmpresaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,14 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('central.welcome');
+    return view('central.landing');
 });
 //ROUTAS PARA LA AUTENTICACION DE LOS USUARIOS
 require __DIR__ . '/auth.php';
 
 
 Route::get('/dashboard', function () {
-    return view('central.dashboard');
+    return view('central.home');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 /* Landing Page */
@@ -34,7 +35,16 @@ Route::get('/formulario', function () {
     return view('central.formulario');
 });
 
-/* Credit Card */
-Route::get('/credit-card', function () {
-    return view('central.credit-card');
+/* Home */
+Route::get('/home', function () {
+    return view('central.home');
 });
+
+/* Login Buscador */
+Route::get('/login-buscador', function () {
+    return view('central.login-buscador');
+});
+
+/* Buscador Empresa Controller */
+Route::post('login-buscador', [BuscadorEmpresaController::class, 'index'])
+    ->name('login-buscador');

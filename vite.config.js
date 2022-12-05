@@ -12,8 +12,6 @@ export default defineConfig({
                 'resources/js/landing.js',
                 'resources/css/formulario.css',
                 'resources/js/formulario.js',
-                'resources/css/credit-card.css',
-                'resources/js/credit-card.js',
             ],
             refresh: true,
         }),

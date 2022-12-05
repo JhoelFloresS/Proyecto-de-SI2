@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Models\tenant\Bitacora;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByPath;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
@@ -46,6 +47,11 @@ Route::prefix('/{tenant}')->middleware([
     Route::get('/personalizacion',[App\Http\Controllers\tenant\personalizacionController::class,'index'] )
     ->middleware(['auth', 'auth.session'])->name('tenant.personalizacion');
    
+    Route::get('/bitacoras', [App\Http\Controllers\tenant\BitacoraController::class, 'index'])
+    ->name('tenant.bitacoras.index');
+    Route::get('/bitacoras-download-pdf', [App\Http\Controllers\tenant\BitacoraController::class, 'downloadPDF'])
+    ->name('tenant-bitacoras-download-pdf');
+
     Route::post('/personalizacion/edit',[App\Http\Controllers\tenant\personalizacionController::class,'edit'] )
     ->middleware(['auth', 'auth.session'])->name('tenant.personalizacion.edit');
 
