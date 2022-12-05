@@ -8,7 +8,7 @@
            alt="">
       <div class="ms-2">
         <h5 class="fs-6 mb-0">
-          <a class="text-decoration-none" href="#">{{'${Auth::user()->name}'}}</a>
+          <a class="text-decoration-none" href="#">{{{Auth::user()->name}}}</a>
         </h5>
         <p class="mt-1 mb-0">Lorem ipsum dolor sit amet consectetur.</p>
       </div>
@@ -44,6 +44,12 @@
       @can('backups')
       <li class="">
         <i class="uil-folder"></i><a href="{{route('tenant.backups',tenant('id'))}}">backups</a>
+      </li>
+      @endcan
+
+      @can('Gestionar Bitacora')
+      <li class="">
+        <i class="uil-folder"></i><a href="{{route('tenant.bitacoras.index',tenant('id'))}}">Bitacora</a>
       </li>
       @endcan
       <li class="has-dropdown">

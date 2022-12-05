@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Models\tenant\Bitacora;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByPath;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
@@ -79,5 +80,11 @@ Route::prefix('/{tenant}')->middleware([
  
       Route::delete('/{role}/roles',[App\Http\Controllers\tenant\RoleController::class,'destroy'] )
       ->middleware(['auth', 'auth.session'])->middleware('can:Gestionar Roles')->name('tenant.roles.delete');
+
+
+    Route::get('/bitacoras', [App\Http\Controllers\tenant\BitacoraController::class, 'index'])->middleware('can:Gestionar Bitacora')
+    ->name('tenant.bitacoras.index');
+    Route::get('/bitacoras-download-pdf', [App\Http\Controllers\tenant\BitacoraController::class, 'downloadPDF'])->middleware('can:Gestionar Bitacora')
+    ->name('tenant-bitacoras-download-pdf');
 
 });

@@ -29,7 +29,7 @@
                 <li><a href="#ubicacion">Ubicacion</a></li> -->
                 <li><a href="#contacto">Contactanos</a></li>
                 <li><a href="/shop">Tienda</a></li>
-                <li><a href="{{ route('login') }}" target="_blank">Ingresar</a></li>
+                <li><a href="{{ route('login-buscador') }}" target="_blank">Ingresar</a></li>
                 <li><a href="{{ route('register') }}" target="_blank">Registrar</a></li>
                 <div class="cancel-btn">
                     <i class="fas fa-times"></i>
