@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BuscadorEmpresaController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('central.landing');
-});
+})->name('central.inicio');
 //ROUTAS PARA LA AUTENTICACION DE LOS USUARIOS
 require __DIR__ . '/auth.php';
 
@@ -31,9 +32,10 @@ Route::get('/landing', function () {
 });
 
 /* Formulario */
-Route::get('/formulario', function () {
-    return view('central.formulario');
-});
+Route::get('/formulario', function (Request $request) {
+    // dd($request);
+    return view('central.formulario', [ 'idPlan' => $request->id ]);
+})->name('central.formulario');
 
 /* Home */
 Route::get('/home', function () {
@@ -48,3 +50,6 @@ Route::get('/login-buscador', function () {
 /* Buscador Empresa Controller */
 Route::post('login-buscador', [BuscadorEmpresaController::class, 'index'])
     ->name('login-buscador');
+
+Route::post('/cretae-empresa', [BuscadorEmpresaController::class, 'create'])
+    ->name('create-empresa');
