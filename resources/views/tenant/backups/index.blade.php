@@ -1,6 +1,4 @@
 <x-tenant-app title="backups">
-   @can('backups')
-       
    
     <div class="card">
         <div class="card-header " style="">
@@ -31,6 +29,5 @@
             </div>
         </div>
     </div>
-    @endcan
     <script></script>
 </x-tenant-app>
