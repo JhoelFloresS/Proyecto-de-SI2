@@ -31,7 +31,7 @@
         </ul>
       </li>
       
-      @can('Administracion')
+      {{-- @can('Administracion') --}}
         <li class="has-dropdown">
           <i class="uil-setting"></i> <a href="#">Administracion</a>
           <ul class="sidebar-dropdown list-unstyled">
@@ -39,19 +39,19 @@
             <li><a href="{{route('tenant.roles',tenant('id'))}}">Gestionar roles</a></li>
           </ul>
         </li>
-      @endcan
+     {{--  @endcan --}}
 
-      @can('backups')
+      {{-- @can('backups') --}}
       <li class="">
         <i class="uil-folder"></i><a href="{{route('tenant.backups',tenant('id'))}}">backups</a>
       </li>
-      @endcan
+     {{--  @endcan --}}
 
-      @can('Gestionar Bitacora')
+     {{--  @can('Gestionar Bitacora') --}}
       <li class="">
         <i class="uil-folder"></i><a href="{{route('tenant.bitacoras.index',tenant('id'))}}">Bitacora</a>
       </li>
-      @endcan
+     {{--  @endcan --}}
       <li class="has-dropdown">
         <i class="uil-calendar-alt"></i><a href="#"> Calender</a>
         <ul class="sidebar-dropdown list-unstyled">
