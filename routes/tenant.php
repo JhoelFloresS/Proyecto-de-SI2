@@ -43,9 +43,18 @@ Route::prefix('/{tenant}')->middleware([
     Route::post('/backups/crear',[App\Http\Controllers\tenant\backupController::class,'create'])
     ->middleware(['auth', 'auth.session'])->name('tenant.backups.crear');
 
+    
+   
     Route::get('/bitacoras', [App\Http\Controllers\tenant\BitacoraController::class, 'index'])
     ->name('tenant.bitacoras.index');
     Route::get('/bitacoras-download-pdf', [App\Http\Controllers\tenant\BitacoraController::class, 'downloadPDF'])
     ->name('tenant-bitacoras-download-pdf');
+
+    //personalizacion
+    Route::get('/personalizacion',[App\Http\Controllers\tenant\personalizacionController::class,'index'] )
+    ->middleware(['auth', 'auth.session'])->name('tenant.personalizacion');
+
+    Route::post('/personalizacion/edit',[App\Http\Controllers\tenant\personalizacionController::class,'edit'] )
+    ->middleware(['auth', 'auth.session'])->name('tenant.personalizacion.edit');
 
 });
