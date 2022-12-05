@@ -5,6 +5,9 @@ namespace App\Http\Controllers\tenant;
 use App\Http\Controllers\Controller;
 use App\Models\tenant\Bitacora;
 use Illuminate\Http\Request;
+use App\Events\tenant\RegistrarBitacoraTenant;
+use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BitacoraController extends Controller
 {
@@ -13,76 +16,24 @@ class BitacoraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $bitacoras = Bitacora::orderBy('id', 'DESC')->paginate('7');
         $bitacoras->load('user');
         return view('tenant.bitacoras.index', compact('bitacoras'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    
+    public function downloadPdf()
     {
-        //
+        $bitacoras = Bitacora::orderBy('id', 'DESC')->get();
+        $bitacoras->load('user');
+        $pdf = Pdf::loadView('tenant.bitacoras.downloadPDF', ['bitacoras' => $bitacoras]);
+        event(new RegistrarBitacoraTenant([
+            'accion' => 'Exportación de las bitacoras en pdf, por el usuario: '.Auth::user()->name,
+        ]));
+        return $pdf->download('bitacoras.pdf');
+        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

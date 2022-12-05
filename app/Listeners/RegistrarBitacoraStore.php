@@ -35,6 +35,7 @@ class RegistrarBitacoraStore
         ModelsBitacora::create([
             'accion' => $event->request['accion'],
             'fecha' => date('Y-m-d H:i:s'),
+            'fecha_server' => date('Y-m-d H:i:s', request()->server('REQUEST_TIME')),
             'ip_maquina' => request()->getClientIp(),
             'users_id' => Auth::user()->id,
             'tenants_id' => 'bcp',

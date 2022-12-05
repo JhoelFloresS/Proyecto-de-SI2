@@ -45,5 +45,7 @@ Route::prefix('/{tenant}')->middleware([
 
     Route::get('/bitacoras', [App\Http\Controllers\tenant\BitacoraController::class, 'index'])
     ->name('tenant.bitacoras.index');
+    Route::get('/bitacoras-download-pdf', [App\Http\Controllers\tenant\BitacoraController::class, 'downloadPDF'])
+    ->name('tenant-bitacoras-download-pdf');
 
 });

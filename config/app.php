@@ -69,7 +69,8 @@ return [
     |
     */
 
-    'timezone' => 'America/La_Paz',
+    // 'timezone' => 'America/La_Paz',
+    'timezone' => 'UTC',
 
     /*
     |--------------------------------------------------------------------------
@@ -196,6 +197,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\TenancyServiceProvider::class,
 
+        // libreria para generar PDF
+        Barryvdh\DomPDF\ServiceProvider::class,
+
     ],
 
     /*
@@ -212,5 +216,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
+
+    //Libreria para generar PDF
+    'PDF' => Barryvdh\DomPDF\Facade::class,
 
 ];
