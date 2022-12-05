@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             'password' => $password,
             'foto' => null,
             'telefono' => '63130372',
-        ]);
+        ])->assignRole('Admin');
         
         User::create([
             'name' => 'Ricky Roy Ramírez Pineda',
@@ -31,35 +31,38 @@ class UserSeeder extends Seeder
             'password' => $password,
             'foto' => null,
             'telefono' => '75125741',
-        ]);
+        ])->assignRole('Admin');
         User::create([
             'name' => 'Marco David Toledo Canna',
             'email' => 'marco@gmail.com',
             'password' => $password,
             'foto' => null,
             'telefono' => '71484520',
-        ]);
+        ])->assignRole('Admin');
+
         User::create([
             'name' => 'Kevin Jhoel Sarmiento Flores',
             'email' => 'jhoel@gmail.com',
             'password' => $password,
             'foto' => null,
             'telefono' => '78574149',
-        ]);
+        ])->assignRole('Admin');
+
         User::create([
             'name' => 'Luis Alejandro Torrez Rocha',
             'email' => 'luis@gmail.com',
             'password' => $password,
             'foto' => null,
             'telefono' => '65252982',
-        ]);
+        ])->assignRole('Admin');
+
         User::create([
             'name' => 'Andres Silva Serrate',
             'email' => 'andres@gmail.com',
             'password' => $password,
             'foto' => null,
             'telefono' => '79474741',
-        ]); //6
+        ])->assignRole('Admin'); //6
         
         
         User::create([
