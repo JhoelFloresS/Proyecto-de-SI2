@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use PDO;
 
-class backupController extends Controller
+class BackupController extends Controller
 {
     
     private function obtenerTablasDeUnaBaseDeDatos($host, $usuario, $pass, $nombreDeLaBaseDeDatos)

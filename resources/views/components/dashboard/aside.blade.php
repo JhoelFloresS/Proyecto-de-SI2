@@ -23,16 +23,29 @@
       <li class="has-dropdown">
         <i class="uil-estate fa-fw"></i><a href="#"> Dashboard</a>
         <ul class="sidebar-dropdown list-unstyled">
-          <li><a href="#">Lorem ipsum</a></li>
-          <li><a href="#">ipsum dolor</a></li>
+          <li><a href="#">dolor ipsum</a></li>
+          <li><a href="#">dolor ipsum</a></li>
           <li><a href="#">dolor ipsum</a></li>
           <li><a href="#">amet consectetur</a></li>
           <li><a href="#">ipsum dolor sit</a></li>
         </ul>
       </li>
+      
+      @can('Administracion')
+        <li class="has-dropdown">
+          <i class="uil-setting"></i> <a href="#">Administracion</a>
+          <ul class="sidebar-dropdown list-unstyled">
+            <li><a href="{{route('tenant.users',tenant('id'))}}">Gestionar usuarios</a></li>
+            <li><a href="{{route('tenant.roles',tenant('id'))}}">Gestionar roles</a></li>
+          </ul>
+        </li>
+      @endcan
+
+      @can('backups')
       <li class="">
         <i class="uil-folder"></i><a href="{{route('tenant.backups',tenant('id'))}}">backups</a>
       </li>
+      @endcan
       <li class="has-dropdown">
         <i class="uil-calendar-alt"></i><a href="#"> Calender</a>
         <ul class="sidebar-dropdown list-unstyled">
