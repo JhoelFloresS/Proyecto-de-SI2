@@ -1,3 +1,5 @@
+
+
 //DOM elements
 const DOMstrings = {
     stepsBtnClass: 'multisteps-form__progress-btn',
@@ -463,3 +465,13 @@ window.onload = function () {
         document.querySelector('.creditcard').classList.add('flipped');
     });
 };
+
+
+//Variable alpinejs
+import Alpine from 'alpinejs';
+
+window.Alpine = Alpine;
+
+Alpine.start()
+
+console.log(Alpine)

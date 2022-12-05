@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>April Template</title>
+    <title>{{env('APP_NAME')}}</title>
     <link href="https://fonts.googleapis.com/css?family=Heebo:400,500,700|Fira+Sans:600" rel="stylesheet">
     <script src="https://unpkg.com/animejs@2.2.0/anime.min.js"></script>
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
@@ -18,7 +18,7 @@
     <!-- navigation menu -->
     <nav>
         <div class="navbar">
-            <div class="logo"><a href="#">Name Empresa</a></div>
+            <div class="logo"><a href="{{route('central.inicio')}}">{{strtoupper(env('APP_NAME'))}}</a></div>
             <ul class="menu">
                 <li><a href="#">Inicio</a></li>
                 <!-- <li><a href="#servicios">Servicios</a></li>
@@ -27,10 +27,10 @@
                 <li><a href="#historia">Historia</a></li>
                 <li><a href="#resultados">Resultados</a></li>
                 <li><a href="#ubicacion">Ubicacion</a></li> -->
-                <li><a href="#contacto">Contactanos</a></li>
+                <li><a href="#subscribe">Subscribete</a></li>
                 <li><a href="/shop">Tienda</a></li>
                 <li><a href="{{ route('login-buscador') }}" target="_blank">Ingresar</a></li>
-                <li><a href="{{ route('register') }}" target="_blank">Registrar</a></li>
+                {{--  <li><a href="{{ route('register') }}" target="_blank">Registrar</a></li>  --}}
                 <div class="cancel-btn">
                     <i class="fas fa-times"></i>
                 </div>
@@ -321,7 +321,7 @@
                 </div>
             </section>
 
-            <section class="features section">
+            <section id="subscribe" class="features section">
                 <div class="container">
                     <div class="features-inner section-inner">
                         <div class="features-header text-center">
@@ -349,7 +349,7 @@
                                     <p class="text-sm">{{$plan->descripcion}}</p>
                                     <p>Monto: {{$plan->precio}}</p>
                                     <!-- button color primary -->
-                                    <a class="button button-primary button-shadow button-block" href="\formulario">Solicitar</a>
+                                    <a class="button button-primary button-shadow button-block" href="{{route('central.formulario', [ 'id' => $plan->id])}}">Solicitar</a>
                                 </div>
                             </div>
                             @endforeach

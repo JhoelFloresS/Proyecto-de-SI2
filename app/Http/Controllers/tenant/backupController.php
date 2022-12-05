@@ -35,6 +35,7 @@ class BackupController extends Controller
      */
     public function index()
     {
+
         $filesystem = new Filesystem();
         $filesystem->deleteDirectory(storage_path("/app/backup/"));
 

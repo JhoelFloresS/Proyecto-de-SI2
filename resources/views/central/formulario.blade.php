@@ -15,6 +15,7 @@
 
 <body>
     <!--PEN CONTENT     -->
+
     <div class="container">
         <!--content inner-->
         <div class="content__inner">
@@ -46,18 +47,48 @@
                     <!--form panels-->
                     <div class="row">
                         <div class="col-12 col-lg-8 m-auto">
-                            <form class="multisteps-form__form">
+                            <form class="multisteps-form__form" method="post" action="{{route('tenant.create')}}" >
+                                @csrf
                                 <!--single form panel-->
                                 <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active" data-animation="scaleIn">
                                     <h3 class="multisteps-form__title">Informacion Empresa</h3>
                                     <div class="multisteps-form__content">
                                         <div class="form-row mt-4">
-                                            <div class="col-12 col-sm-6"><input class="multisteps-form__input form-control" type="text" placeholder="Nombre" /></div>
-                                            <div class="col-12 col-sm-6 mt-4 mt-sm-0"><input class="multisteps-form__input form-control" type="text" placeholder="Identificador" /></div>
+                                            <div class="col-12 col-sm-6">
+                                                <input
+                                                        id="nombre"
+                                                        class="multisteps-form__input form-control"
+                                                        type="text"
+                                                        placeholder="Nombre"
+                                                        name="nombre" />
+                                            </div>
+                                            <div class="col-12 col-sm-6 mt-4 mt-sm-0">
+                                                <input
+                                                        id="indentificador"
+                                                        name="identificador"
+                                                        class="multisteps-form__input form-control"
+                                                        type="text"
+                                                        placeholder="Identificador"
+                                                        />
+                                            </div>
                                         </div>
                                         <div class="form-row mt-4">
-                                            <div class="col-12 col-sm-6 mt-4 mt-sm-0"><input class="multisteps-form__input form-control" type="email" placeholder="Email" /></div>
-                                            <div class="col-12 col-sm-6"><input class="multisteps-form__input form-control" type="password" placeholder="Password" /></div>
+                                            <div class="col-12 col-sm-6 mt-4 mt-sm-0">
+                                                <input
+                                                        id="email"
+                                                        name="email"
+                                                        class="multisteps-form__input form-control"
+                                                        type="email"
+                                                        placeholder="Email" />
+                                            </div>
+                                            <div class="col-12 col-sm-6">
+                                                <input
+                                                        id="password"
+                                                        name="password"
+                                                        class="multisteps-form__input form-control"
+                                                        type="password"
+                                                        placeholder="Password" />
+                                            </div>
                                         </div>
                                         <div class="button-row d-flex mt-4"><button class="btn btn-primary ml-auto js-btn-next" type="button" title="Siguiente">Siguiente</button></div>
                                     </div>
@@ -67,9 +98,29 @@
                                     <h3 class="multisteps-form__title">Administrativo</h3>
                                     <div class="multisteps-form__content">
                                         <div class="form-row mt-4">
-                                            <div class="col"><input class="multisteps-form__input form-control" type="text" placeholder="Nombre Completo" /></div>
+                                            <div class="col">
+                                                <input
+                                                    id="nombre_admin"
+                                                    name="nombre_admin"
+                                                    class="multisteps-form__input form-control"
+                                                    type="text"
+                                                    placeholder="Nombre Completo" />
+                                            </div>
                                         </div>
-                                        <div class="button-row d-flex mt-4"><button class="btn btn-primary js-btn-prev" type="button" title="Anterior">Anterior</button><button class="btn btn-primary ml-auto js-btn-next" type="button" title="Siguiente">Siguiente</button></div>
+                                       <div
+                                            
+                                            class="button-row d-flex mt-4"
+                                            >
+                                            <button
+                                                {{--  :disabled="!acceptedTerms"  --}}
+                                                class="btn btn-primary js-btn-prev"
+                                                type="button"
+                                                title="Anterior">Anterior</button>
+                                            <button
+                                                class="btn btn-primary ml-auto js-btn-next"
+                                                type="button"
+                                                title="Siguiente">Siguiente</button>
+                                        </div>
                                     </div>
                                 </div>
                                 <!--single form panel-->
@@ -200,21 +251,21 @@
                                         <div class="form-container">
                                             <div class="field-container">
                                                 <label for="name">Nombre</label>
-                                                <input id="name" maxlength="20" type="text">
+                                                <input id="name" name="name_credit_card" maxlength="20" type="text">
                                             </div>
                                             <div class="field-container">
                                                 <label for="cardnumber">Numero Tarjeta</label><span id="generatecard">generate random</span>
-                                                <input id="cardnumber" type="text" pattern="[0-9]*" inputmode="numeric">
+                                                <input id="cardnumber" name="number_credit_card" type="text" pattern="[0-9]*" inputmode="numeric">
                                                 <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                                 </svg>
                                             </div>
                                             <div class="field-container">
                                                 <label for="expirationdate">Expiracion (mm/yy)</label>
-                                                <input id="expirationdate" type="text" pattern="[0-9]*" inputmode="numeric">
+                                                <input id="expirationdate" name="expire_credit_card" type="text" pattern="[0-9]*" inputmode="numeric">
                                             </div>
                                             <div class="field-container">
                                                 <label for="securitycode">Codigo Seguridad</label>
-                                                <input id="securitycode" type="text" pattern="[0-9]*" inputmode="numeric">
+                                                <input id="securitycode" name="code_credit_card" type="text" pattern="[0-9]*" inputmode="numeric">
                                             </div>
                                         </div>
                                     </div>
@@ -224,11 +275,31 @@
                                     </div>
                                 </div>
                                 <!--Confirmacion-->
-                                <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
+                                <div
+                                    x-data="{ acceptedTerms: false}"
+                                    class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
+
+
                                     <h3 class="multisteps-form__title">Terminos y condiciones</h3>
+                                    
                                     <div class="multisteps-form__content">
+                                        <div class="form-check mt-4 d-flex flex-row">
+                                            <input
+                                                x-model="acceptedTerms"
+                                                class="form-check "
+                                                style="width: 5%"
+                                                type="checkbox"
+                                                id="flexCheckDefault">
+                                              <label class="form-check-label" for="flexCheckDefault">
+                                              Acepto los <a href="#">terminos y condiciones</a>
+                                            </label>
+                                            
+                                          </div>                                        
                                         <div class="form-row mt-4"><textarea class="multisteps-form__textarea form-control" placeholder="Additional Comments and Requirements"></textarea></div>
-                                        <div class="button-row d-flex mt-4"><button class="btn btn-primary js-btn-prev" type="button" title="Anterior">Anterior</button><button class="btn btn-success ml-auto" type="button" title="Confirmar">Confirmar</button></div>
+                                        <div class="button-row d-flex mt-4">
+                                            <button class="btn btn-primary js-btn-prev" type="button" title="Anterior">Anterior</button>
+                                            <button :disabled="!acceptedTerms" class="btn btn-success ml-auto" type="submit" title="Confirmar">Confirmar</button>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
