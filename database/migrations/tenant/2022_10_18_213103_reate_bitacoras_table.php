@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('accion');
             $table->dateTime('fecha');
+            $table->dateTime('fecha_server');
             $table->string('ip_maquina');
             $table->unsignedBigInteger('users_id');
             $table->foreign('users_id')->on('users')->references('id');
