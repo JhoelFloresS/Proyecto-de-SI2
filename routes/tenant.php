@@ -37,15 +37,63 @@ Route::prefix('/{tenant}')->middleware([
     })->middleware(['auth', 'auth.session'])->name('tenant.dashboard');
 
    //backups
-    Route::get('/backups',[App\Http\Controllers\tenant\backupController::class,'index'] )
-    ->middleware(['auth', 'auth.session'])->name('tenant.backups');
+    Route::get('/backups',[App\Http\Controllers\tenant\BackupController::class,'index'] )
+    ->middleware(['auth', 'auth.session'])->middleware('can:backups')->name('tenant.backups');
 
-    Route::post('/backups/crear',[App\Http\Controllers\tenant\backupController::class,'create'])
-    ->middleware(['auth', 'auth.session'])->name('tenant.backups.crear');
+    Route::post('/backups/crear',[App\Http\Controllers\tenant\BackupController::class,'create'])
+    ->middleware(['auth', 'auth.session'])->middleware('can:backups')->name('tenant.backups.crear');
 
-    Route::get('/bitacoras', [App\Http\Controllers\tenant\BitacoraController::class, 'index'])
+
+     //users
+     Route::get('/users',[App\Http\Controllers\tenant\UserController::class,'index'] )
+     ->middleware(['auth', 'auth.session'])->middleware('can:Gestionar Usuarios')->name('tenant.users');
+
+     Route::get('/users/create',[App\Http\Controllers\tenant\UserController::class,'create'] )
+     ->middleware(['auth', 'auth.session'])->middleware('can:Gestionar Usuarios')->name('tenant.users.create');
+
+     Route::post('/users/store',[App\Http\Controllers\tenant\UserController::class,'store'] )
+     ->middleware(['auth', 'auth.session'])->middleware('can:Gestionar Usuarios')->name('tenant.users.store');
+
+     Route::get('/{user}/users/edit',[App\Http\Controllers\tenant\UserController::class,'edit'] )
+     ->middleware(['auth', 'auth.session'])->middleware('can:Gestionar Usuarios')->name('tenant.users.edit');
+
+     Route::put('/{user}/users/update',[App\Http\Controllers\tenant\UserController::class,'update'] )
+     ->middleware(['auth', 'auth.session'])->middleware('can:Gestionar Usuarios')->name('tenant.users.update');
+
+     Route::delete('/{user}/users/',[App\Http\Controllers\tenant\UserController::class,'destroy'] )
+     ->middleware(['auth', 'auth.session'])->middleware('can:Gestionar Usuarios')->name('tenant.users.delete');
+
+      //roles
+      Route::get('/roles',[App\Http\Controllers\tenant\RoleController::class,'index'] )
+      ->middleware(['auth', 'auth.session'])->middleware('can:Gestionar Roles')->name('tenant.roles');
+ 
+      Route::get('/roles/create',[App\Http\Controllers\tenant\RoleController::class,'create'] )
+      ->middleware(['auth', 'auth.session'])->middleware('can:Gestionar Roles')->name('tenant.roles.create');
+ 
+      Route::post('/roles/store',[App\Http\Controllers\tenant\RoleController::class,'store'] )
+      ->middleware(['auth', 'auth.session'])->middleware('can:Gestionar Roles')->name('tenant.roles.store');
+ 
+      Route::get('/{role}/roles/edit',[App\Http\Controllers\tenant\RoleController::class,'edit'] )
+      ->middleware(['auth', 'auth.session'])->middleware('can:Gestionar Roles')->name('tenant.roles.edit');
+ 
+      Route::put('/{role}/roles/update',[App\Http\Controllers\tenant\RoleController::class,'update'] )
+      ->middleware(['auth', 'auth.session'])->middleware('can:Gestionar Roles')->name('tenant.roles.update');
+ 
+      Route::delete('/{role}/roles',[App\Http\Controllers\tenant\RoleController::class,'destroy'] )
+      ->middleware(['auth', 'auth.session'])->middleware('can:Gestionar Roles')->name('tenant.roles.delete');
+
+
+    Route::get('/bitacoras', [App\Http\Controllers\tenant\BitacoraController::class, 'index'])->middleware('can:Gestionar Bitacora')
+
     ->name('tenant.bitacoras.index');
-    Route::get('/bitacoras-download-pdf', [App\Http\Controllers\tenant\BitacoraController::class, 'downloadPDF'])
+    Route::get('/bitacoras-download-pdf', [App\Http\Controllers\tenant\BitacoraController::class, 'downloadPDF'])->middleware('can:Gestionar Bitacora')
     ->name('tenant-bitacoras-download-pdf');
+
+    //personalizacion
+    Route::get('/personalizacion',[App\Http\Controllers\tenant\personalizacionController::class,'index'] )
+    ->middleware(['auth', 'auth.session'])->name('tenant.personalizacion');
+
+    Route::post('/personalizacion/edit',[App\Http\Controllers\tenant\personalizacionController::class,'edit'] )
+    ->middleware(['auth', 'auth.session'])->name('tenant.personalizacion.edit');
 
 });

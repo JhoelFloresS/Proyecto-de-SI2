@@ -18,7 +18,7 @@
               </li>
               <li><a class="dropdown-item" href="#">My inbox</a>
               </li>
-              <li><a class="dropdown-item" href="#">Help</a>
+              <li><a class="dropdown-item" href="{{route('tenant.personalizacion',tenant('id'))}}">Perzonalizar</a>
               </li>
               <li><hr class="dropdown-divider"></li>
               <form action="{{route('tenant.logout', tenant('id'))}}" method="post">
