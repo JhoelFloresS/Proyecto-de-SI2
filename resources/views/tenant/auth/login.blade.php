@@ -8,7 +8,8 @@
         <x-slot name="logo">
             <a href="/{{tenant('id')}}/login">
                 {{-- <x-application-logo class="w-20 h-20 fill-current text-gray-300" /> --}}
-                <div class=" rounded-md w-20 h-20 fill-current text-gray-300" style="background-image:url('https://img.freepik.com/vector-premium/ilustracion-gato-colorido-estilo-pop-art_373096-980.jpg'); background-repeat: no-repeat; background-size: cover;"></div>
+                {{-- <div class=" rounded-md w-20 h-20 fill-current text-gray-300" style="background-image:url('https://img.freepik.com/vector-premium/ilustracion-gato-colorido-estilo-pop-art_373096-980.jpg'); background-repeat: no-repeat; background-size: cover;"></div> --}}
+                <div class=" rounded-md w-20 h-20 fill-current text-gray-300" style="background-image:url({{tenant('logo')}}); background-repeat: no-repeat; background-size: cover;"></div>
             </a>
         </x-slot>
 
