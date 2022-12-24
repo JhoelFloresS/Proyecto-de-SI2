@@ -17,7 +17,12 @@ use Spatie\Permission\Models\Permission;
 class TenantController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
+   
+    public function index()
+    {
+        $tenants = Tenant::all(); 
+        return view('central.tenants.index' ,compact('tenants'));
+    }
 
     public function create(Request $request)
     {
@@ -50,5 +55,73 @@ class TenantController extends BaseController
         $user->roles()->sync(  Role::create(['name' => 'admin']));
 
         return redirect()->route('tenant.users', tenant('id'));
+    }
+
+     public function create2()
+    {
+        
+        return view('central.tenants.create');
+    }
+
+ 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'id'=>'required',
+            'name'=>'required',
+            'email'=>'required',
+        ]);
+        
+        $tenant= new Tenant();
+        $tenant->id = $request->id;
+        $tenant->name = $request->name;
+        $tenant->direccion = $request->direccion;
+        $tenant->email = $request->email;
+        $tenant->logo = $request->logo;
+        $tenant->pagina_web = $request->pagina_web;
+        $tenant->save();
+        
+
+        return redirect()->route('central.tenants');  
+    }
+
+
+
+ 
+    public function edit(Tenant $tenant)
+    {
+        return view('central.tenants.edit',compact('tenant'));
+    }
+
+    public function update(Request $request,Tenant $tenant)
+    {
+        $request->validate([
+            'id'=>'required',
+            'name'=>'required',
+            'email'=>'required',
+        ]);
+        
+        $tenant->id = $request->id;
+        $tenant->name = $request->name;
+        $tenant->direccion = $request->direccion;
+        $tenant->email = $request->email;
+        $tenant->logo = $request->logo;
+        $tenant->pagina_web = $request->pagina_web;
+        $tenant->save();
+        
+
+        return redirect()->route('central.tenants');  
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Tenant $tenant)
+    {
+        $tenant->delete();
+        return redirect()->route('central.tenants');
     }
 }
