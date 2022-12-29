@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\tenant\CreditoController;
 use App\Models\tenant\Bitacora;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByPath;
@@ -83,11 +84,11 @@ Route::prefix('/{tenant}')->middleware([
       ->middleware(['auth', 'auth.session'])->middleware('can:Gestionar Roles')->name('tenant.roles.delete');
 
 
-    Route::get('/bitacoras', [App\Http\Controllers\tenant\BitacoraController::class, 'index'])->middleware('can:Gestionar Bitacora')
+    //bitacoras
+    Route::get('/bitacoras', [App\Http\Controllers\tenant\BitacoraController::class, 'index'])
+    ->middleware('can:Gestionar Bitacora')->name('tenant.bitacoras.index');
 
-    ->name('tenant.bitacoras.index');
-    Route::get('/bitacoras-download-pdf', [App\Http\Controllers\tenant\BitacoraController::class, 'downloadPDF'])->middleware('can:Gestionar Bitacora')
-    ->name('tenant-bitacoras-download-pdf');
+    Route::get('/bitacoras-download-pdf', [App\Http\Controllers\tenant\BitacoraController::class, 'downloadPDF'])->middleware('can:Gestionar Bitacora')->name('tenant-bitacoras-download-pdf');
 
     //personalizacion
     Route::get('/personalizacion',[App\Http\Controllers\tenant\personalizacionController::class,'index'] )
@@ -95,5 +96,27 @@ Route::prefix('/{tenant}')->middleware([
 
     Route::post('/personalizacion/edit',[App\Http\Controllers\tenant\personalizacionController::class,'edit'] )
     ->middleware(['auth', 'auth.session'])->name('tenant.personalizacion.edit');
+
+
+    //Creditos 
+    Route::get('/creditos', [App\Http\Controllers\tenant\CreditoController::class, 'index'])
+    ->name('tenant.creditos.index');
+    Route::get('/creditos/create/', [App\Http\Controllers\tenant\CreditoController::class, 'create'])
+    ->name('tenant.creditos.create');
+    Route::post('/creditos', [App\Http\Controllers\tenant\CreditoController::class, 'store'])
+    ->name('tenant.creditos.store');
+    Route::get('/creditos/{credito}/edit/', [App\Http\Controllers\tenant\CreditoController::class, 'edit'])
+    ->name('tenant.creditos.edit');
+    Route::put('/creditos/{credito}', [App\Http\Controllers\tenant\CreditoController::class, 'update'])
+    ->name('tenant.creditos.update');
+
+    //solicitudes
+    Route::get('/solicitudes', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'index'])
+    ->name('tenant.solicitudes.index');
+    Route::get('/solicitudes/create/', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'create'])
+    ->name('tenant.solicitudes.create');
+    Route::post('/solicitudes', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'store'])
+    ->name('tenant.solicitudes.store');
+
 
 });
