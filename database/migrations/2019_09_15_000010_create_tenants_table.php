@@ -16,7 +16,7 @@ class CreateTenantsTable extends Migration
     public function up(): void
     {
         Schema::create('tenants', function (Blueprint $table) {
-            $table->string('id')->primary();
+            $table->string('id')->primary()->onUpdate('cascade')->onDelete('cascade');
 
             // your custom columns may go here
             $table->string('name');
@@ -27,6 +27,8 @@ class CreateTenantsTable extends Migration
 
             $table->timestamps();
             $table->json('data')->nullable();
+
+            
         });
     }
 
