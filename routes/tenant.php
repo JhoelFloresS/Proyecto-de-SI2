@@ -96,4 +96,7 @@ Route::prefix('/{tenant}')->middleware([
     Route::post('/personalizacion/edit',[App\Http\Controllers\tenant\personalizacionController::class,'edit'] )
     ->middleware(['auth', 'auth.session'])->name('tenant.personalizacion.edit');
 
+    //perfil
+    Route::get('/perfil',[App\Http\Controllers\tenant\PerfilController::class,'index'] )
+     ->middleware(['auth', 'auth.session'])->name('tenant.perfil');
 });

@@ -86,8 +86,9 @@ class UserController extends Controller
     {
         $roles = Role::all();
         $role_id = DB::table('model_has_roles',)->where('model_id', $user->id)->select('role_id')->first();
-        $Departamentos = $departamentos = Departamento::all();
-        return view('tenant.users.edit',compact('user','roles','role_id','departamentos'));
+        $departamentos = Departamento::all();
+        $departamento_id = DB::table('users',)->where('id', $user->id)->select('departamentos_id')->first();
+        return view('tenant.users.edit',compact('user','roles','role_id','departamentos','departamento_id'));
     }
 
     /**
