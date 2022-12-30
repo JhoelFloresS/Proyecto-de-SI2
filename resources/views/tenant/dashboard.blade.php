@@ -1,194 +1,194 @@
-<x-tenant-app  title="Dashboard">
+@section('navbar', 'Dashboard')
+@section('aside-dashboard', 'py-2.7 bg-blue-500/13')
+<x-tenant-app title="Dashboard">
 
-    <div class="welcome">
-        <div class="content rounded-3 p-3">
-          <h1 class="fs-3">Welcome to Dashboard</h1>
-          <p class="mb-0">Hello Jone Doe, welcome to your awesome dashboard!</p>
+  <!-- cards -->
+  <!-- row 1 -->
+  <div class="flex flex-wrap -mx-3">
+    <!-- card1 -->
+    <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+      <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+        <div class="flex-auto p-4">
+          <div class="flex flex-row -mx-3">
+            <div class="flex-none w-2/3 max-w-full px-3">
+              <div>
+                <p class="mb-0 font-sans text-sm font-semibold leading-normal uppercase dark:text-white dark:opacity-60">
+                  Today's Money</p>
+                <h5 class="mb-2 font-bold dark:text-white">$53,000</h5>
+                <p class="mb-0 dark:text-white dark:opacity-60">
+                  <span class="text-sm font-bold leading-normal text-emerald-500">+55%</span>
+                  since yesterday
+                </p>
+              </div>
+            </div>
+            <div class="px-3 text-right basis-1/3">
+              <div class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-blue-500 to-violet-500">
+                <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-  
-      <section class="statistics mt-4">
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="box d-flex rounded-2 align-items-center mb-4 mb-lg-0 p-3">
-              <i class="uil-envelope-shield fs-2 text-center bg-primary rounded-circle"></i>
-              <div class="ms-3">
-                <div class="d-flex align-items-center">
-                  <h3 class="mb-0">1,245</h3> <span class="d-block ms-2">Emails</span>
-                </div>
-                <p class="fs-normal mb-0">Lorem ipsum dolor sit amet</p>
+    </div>
+
+    <!-- card2 -->
+    <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+      <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+        <div class="flex-auto p-4">
+          <div class="flex flex-row -mx-3">
+            <div class="flex-none w-2/3 max-w-full px-3">
+              <div>
+                <p class="mb-0 font-sans text-sm font-semibold leading-normal uppercase dark:text-white dark:opacity-60">
+                  Today's Users</p>
+                <h5 class="mb-2 font-bold dark:text-white">2,300</h5>
+                <p class="mb-0 dark:text-white dark:opacity-60">
+                  <span class="text-sm font-bold leading-normal text-emerald-500">+3%</span>
+                  since last week
+                </p>
               </div>
             </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="box d-flex rounded-2 align-items-center mb-4 mb-lg-0 p-3">
-              <i class="uil-file fs-2 text-center bg-danger rounded-circle"></i>
-              <div class="ms-3">
-                <div class="d-flex align-items-center">
-                  <h3 class="mb-0">34</h3> <span class="d-block ms-2">Projects</span>
-                </div>
-                <p class="fs-normal mb-0">Lorem ipsum dolor sit amet</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="box d-flex rounded-2 align-items-center p-3">
-              <i class="uil-users-alt fs-2 text-center bg-success rounded-circle"></i>
-              <div class="ms-3">
-                <div class="d-flex align-items-center">
-                  <h3 class="mb-0">5,245</h3> <span class="d-block ms-2">Users</span>
-                </div>
-                <p class="fs-normal mb-0">Lorem ipsum dolor sit amet</p>
+            <div class="px-3 text-right basis-1/3">
+              <div class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-red-600 to-orange-600">
+                <i class="ni leading-none ni-world text-lg relative top-3.5 text-white"></i>
               </div>
             </div>
           </div>
         </div>
-      </section>
-  
-      <section class="charts mt-4">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="chart-container rounded-2 p-3">
-              <h3 class="fs-6 mb-3">Chart title number one</h3>
-              <canvas id="myChart"></canvas>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="chart-container rounded-2 p-3">
-              <h3 class="fs-6 mb-3">Chart title number two</h3>
-              <canvas id="myChart2"></canvas>
-            </div>
-          </div>
-        </div>
-      </section>
-  
-      <section class="admins mt-4">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="box">
-              <!-- <h4>Admins:</h4> -->
-              <div class="admin d-flex align-items-center rounded-2 p-3 mb-4">
-                <div class="img">
-                  <img class="img-fluid rounded-pill"
-                       width="75" height="75"
-                       src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148906966/small/1501685402/enhance"
-                       alt="admin">
-                </div>
-                <div class="ms-3">
-                  <h3 class="fs-5 mb-1">Joge Lucky</h3>
-                  <p class="mb-0">Lorem ipsum dolor sit amet consectetur elit.</p>
-                </div>
-              </div>
-              <div class="admin d-flex align-items-center rounded-2 p-3 mb-4">
-                <div class="img">
-                  <img class="img-fluid rounded-pill"
-                       width="75" height="75"
-                       src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907137/small/1501685404/enhance"
-                       alt="admin">
-                </div>
-                <div class="ms-3">
-                  <h3 class="fs-5 mb-1">Joge Lucky</h3>
-                  <p class="mb-0">Lorem ipsum dolor sit amet consectetur elit.</p>
-                </div>
-              </div>
-              <div class="admin d-flex align-items-center rounded-2 p-3">
-                <div class="img">
-                  <img class="img-fluid rounded-pill"
-                       width="75" height="75"
-                       src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907019/small/1501685403/enhance"
-                       alt="admin">
-                </div>
-                <div class="ms-3">
-                  <h3 class="fs-5 mb-1">Joge Lucky</h3>
-                  <p class="mb-0">Lorem ipsum dolor sit amet consectetur elit.</p>
-                </div>
+      </div>
+    </div>
+
+    <!-- card3 -->
+    <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+      <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+        <div class="flex-auto p-4">
+          <div class="flex flex-row -mx-3">
+            <div class="flex-none w-2/3 max-w-full px-3">
+              <div>
+                <p class="mb-0 font-sans text-sm font-semibold leading-normal uppercase dark:text-white dark:opacity-60">
+                  New Clients</p>
+                <h5 class="mb-2 font-bold dark:text-white">+3,462</h5>
+                <p class="mb-0 dark:text-white dark:opacity-60">
+                  <span class="text-sm font-bold leading-normal text-red-600">-2%</span>
+                  since last quarter
+                </p>
               </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="box">
-              <!-- <h4>Moderators:</h4> -->
-              <div class="admin d-flex align-items-center rounded-2 p-3 mb-4">
-                <div class="img">
-                  <img class="img-fluid rounded-pill"
-                       width="75" height="75"
-                       src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907114/small/1501685404/enhance"
-                       alt="admin">
-                </div>
-                <div class="ms-3">
-                  <h3 class="fs-5 mb-1">Joge Lucky</h3>
-                  <p class="mb-0">Lorem ipsum dolor sit amet consectetur elit.</p>
-                </div>
-              </div>
-              <div class="admin d-flex align-items-center rounded-2 p-3 mb-4">
-                <div class="img">
-                  <img class="img-fluid rounded-pill"
-                       width="75" height="75"
-                       src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907086/small/1501685404/enhance"
-                       alt="admin">
-                </div>
-                <div class="ms-3">
-                  <h3 class="fs-5 mb-1">Joge Lucky</h3>
-                  <p class="mb-0">Lorem ipsum dolor sit amet consectetur elit.</p>
-                </div>
-              </div>
-              <div class="admin d-flex align-items-center rounded-2 p-3">
-                <div class="img">
-                  <img class="img-fluid rounded-pill"
-                       width="75" height="75"
-                       src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance"
-                       alt="admin">
-                </div>
-                <div class="ms-3">
-                  <h3 class="fs-5 mb-1">Joge Lucky</h3>
-                  <p class="mb-0">Lorem ipsum dolor sit amet consectetur elit.</p>
-                </div>
+            <div class="px-3 text-right basis-1/3">
+              <div class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-emerald-500 to-teal-400">
+                <i class="ni leading-none ni-paper-diploma text-lg relative top-3.5 text-white"></i>
               </div>
             </div>
           </div>
         </div>
-      </section>
-  
-      <section class="statis mt-4 text-center">
-        <div class="row">
-          <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-            <div class="box bg-primary p-3">
-              <i class="uil-eye"></i>
-              <h3>5,154</h3>
-              <p class="lead">Page views</p>
+      </div>
+    </div>
+
+    <!-- card4 -->
+    <div class="w-full max-w-full px-3 sm:w-1/2 sm:flex-none xl:w-1/4">
+      <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+        <div class="flex-auto p-4">
+          <div class="flex flex-row -mx-3">
+            <div class="flex-none w-2/3 max-w-full px-3">
+              <div>
+                <p class="mb-0 font-sans text-sm font-semibold leading-normal uppercase dark:text-white dark:opacity-60">
+                  Sales</p>
+                <h5 class="mb-2 font-bold dark:text-white">$103,430</h5>
+                <p class="mb-0 dark:text-white dark:opacity-60">
+                  <span class="text-sm font-bold leading-normal text-emerald-500">+5%</span>
+                  than last month
+                </p>
+              </div>
             </div>
-          </div>
-          <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-            <div class="box bg-danger p-3">
-              <i class="uil-user"></i>
-              <h3>245</h3>
-              <p class="lead">User registered</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-            <div class="box bg-warning p-3">
-              <i class="uil-shopping-cart"></i>
-              <h3>5,154</h3>
-              <p class="lead">Product sales</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="box bg-success p-3">
-              <i class="uil-feedback"></i>
-              <h3>5,154</h3>
-              <p class="lead">Transactions</p>
+            <div class="px-3 text-right basis-1/3">
+              <div class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-orange-500 to-yellow-500">
+                <i class="ni leading-none ni-cart text-lg relative top-3.5 text-white"></i>
+              </div>
             </div>
           </div>
         </div>
-      </section>
-  
-      <section class="charts mt-4">
-        <div class="chart-container p-3">
-          <h3 class="fs-6 mb-3">Chart title number three</h3>
-          <div style="height: 300px">
-            <canvas id="chart3" width="100%"></canvas>
-          </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- cards row 3 -->
+
+  <div class="flex flex-wrap mt-6 -mx-3">
+    <div class="w-full max-w-full px-3 mt-0 lg:w-5/12 lg:flex-none">
+      <div class="border-black/12.5 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl relative flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
+        <div class="p-4 pb-0 rounded-t-4">
+          <h6 class="mb-0 dark:text-white">Categories</h6>
         </div>
-      </section>
+        <div class="flex-auto p-4">
+          <ul class="flex flex-col pl-0 mb-0 rounded-lg">
+            <li class="relative flex justify-between py-2 pr-4 mb-2 border-0 rounded-t-lg rounded-xl text-inherit">
+              <div class="flex items-center">
+                <div class="inline-block w-8 h-8 mr-4 text-center text-black bg-center shadow-sm fill-current stroke-none bg-gradient-to-tl from-zinc-800 to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 rounded-xl">
+                  <i class="text-white ni ni-mobile-button relative top-0.75 text-xxs"></i>
+                </div>
+                <div class="flex flex-col">
+                  <h6 class="mb-1 text-sm leading-normal text-slate-700 dark:text-white">
+                    Devices</h6>
+                  <span class="text-xs leading-tight dark:text-white/80">250 in stock, <span class="font-semibold">346+ sold</span></span>
+                </div>
+              </div>
+              <div class="flex">
+                <button class="group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all dark:text-white"><i class="ni ease-bounce text-2xs group-hover:translate-x-1.25 ni-bold-right transition-all duration-200" aria-hidden="true"></i></button>
+              </div>
+            </li>
+            <li class="relative flex justify-between py-2 pr-4 mb-2 border-0 rounded-xl text-inherit">
+              <div class="flex items-center">
+                <div class="inline-block w-8 h-8 mr-4 text-center text-black bg-center shadow-sm fill-current stroke-none bg-gradient-to-tl from-zinc-800 to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 rounded-xl">
+                  <i class="text-white ni ni-tag relative top-0.75 text-xxs"></i>
+                </div>
+                <div class="flex flex-col">
+                  <h6 class="mb-1 text-sm leading-normal text-slate-700 dark:text-white">
+                    Tickets</h6>
+                  <span class="text-xs leading-tight dark:text-white/80">123 closed, <span class="font-semibold">15
+                      open</span></span>
+                </div>
+              </div>
+              <div class="flex">
+                <button class="group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all dark:text-white"><i class="ni ease-bounce text-2xs group-hover:translate-x-1.25 ni-bold-right transition-all duration-200" aria-hidden="true"></i></button>
+              </div>
+            </li>
+            <li class="relative flex justify-between py-2 pr-4 mb-2 border-0 rounded-b-lg rounded-xl text-inherit">
+              <div class="flex items-center">
+                <div class="inline-block w-8 h-8 mr-4 text-center text-black bg-center shadow-sm fill-current stroke-none bg-gradient-to-tl from-zinc-800 to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 rounded-xl">
+                  <i class="text-white ni ni-box-2 relative top-0.75 text-xxs"></i>
+                </div>
+                <div class="flex flex-col">
+                  <h6 class="mb-1 text-sm leading-normal text-slate-700 dark:text-white">Error
+                    logs</h6>
+                  <span class="text-xs leading-tight dark:text-white/80">1 is active, <span class="font-semibold">40
+                      closed</span></span>
+                </div>
+              </div>
+              <div class="flex">
+                <button class="group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all dark:text-white"><i class="ni ease-bounce text-2xs group-hover:translate-x-1.25 ni-bold-right transition-all duration-200" aria-hidden="true"></i></button>
+              </div>
+            </li>
+            <li class="relative flex justify-between py-2 pr-4 border-0 rounded-b-lg rounded-xl text-inherit">
+              <div class="flex items-center">
+                <div class="inline-block w-8 h-8 mr-4 text-center text-black bg-center shadow-sm fill-current stroke-none bg-gradient-to-tl from-zinc-800 to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 rounded-xl">
+                  <i class="text-white ni ni-satisfied relative top-0.75 text-xxs"></i>
+                </div>
+                <div class="flex flex-col">
+                  <h6 class="mb-1 text-sm leading-normal text-slate-700 dark:text-white">Happy
+                    users</h6>
+                  <span class="text-xs leading-tight dark:text-white/80"><span class="font-semibold">+ 430
+                    </span></span>
+                </div>
+              </div>
+              <div class="flex">
+                <button class="group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all dark:text-white"><i class="ni ease-bounce text-2xs group-hover:translate-x-1.25 ni-bold-right transition-all duration-200" aria-hidden="true"></i></button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- end cards -->
 
 </x-tenant-app>
