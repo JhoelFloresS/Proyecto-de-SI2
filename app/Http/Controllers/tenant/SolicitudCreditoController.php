@@ -10,6 +10,7 @@ use App\Models\tenant\GestionCredito;
 use App\Models\tenant\SolicitudCredito;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SolicitudCreditoController extends Controller
 {
@@ -33,8 +34,8 @@ class SolicitudCreditoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'cliente_id'=>'required',
-            'credito_id'=>'required',
+            'cliente_id' => 'required',
+            'credito_id' => 'required',
             'monto' => 'required',
         ]);
         $solicitud = SolicitudCredito::create([
@@ -47,12 +48,12 @@ class SolicitudCreditoController extends Controller
             'empleado_id' => Auth::user()->id,
             'solicitud_id' => $solicitud->id,
         ]);
-        
+
         $cliente = Cliente::findOrFail($request->cliente_id);
         $cliente->load('user');
         event(new RegistrarBitacoraTenant([
             'accion' => 'Creó una nueva solicitud de credito para el cliente: '
-            .$cliente->user->name.', el usuario: '.Auth::user()->name,
+                . $cliente->user->name . ', el usuario: ' . Auth::user()->name,
         ]));
 
         return redirect()->route('tenant.solicitudes.index', tenant('id'));
@@ -75,9 +76,20 @@ class SolicitudCreditoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(SolicitudCredito $solicitud)
     {
-        //
+        $clientes = Cliente::all();
+        $cliente_id = DB::table('solicitud_creditos')
+            ->where('id', $solicitud->id)
+            ->select('cliente_id')
+            ->first();
+        $clientes->load('user');
+        $creditos = Credito::all();
+        $credito_id = DB::table('solicitud_creditos')
+            ->where('id', $solicitud->id)
+            ->select('credito_id')
+            ->first();
+        return view('tenant.solicitudes.edit', compact('solicitud', 'clientes', 'cliente_id', 'creditos', 'credito_id'));
     }
 
     /**
@@ -90,6 +102,22 @@ class SolicitudCreditoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        // dd($request->all());
+        $request->validate([
+            'cliente_id' => 'required',
+            'credito_id' => 'required',
+            'monto' => 'required',
+        ]);
+        $solicitud = SolicitudCredito::findOrFail($id);
+        $solicitud->update([
+            'cliente_id' => $request->cliente_id,
+            'credito_id' => $request->credito_id,
+            'monto' => $request->monto,
+            'fecha_hora' => date('Y-m-d H:i:s'),
+        ]);
+        $cliente = Cliente::findOrFail($request->cliente_id);
+        $cliente->load('user');
+        return redirect()->route('tenant.solicitudes.index', tenant('id'));
     }
 
     /**
@@ -98,8 +126,10 @@ class SolicitudCreditoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(SolicitudCredito $solicitud)
     {
         //
+        $solicitud->delete();
+        return redirect()->route('tenant.solicitudes.index', tenant('id'));
     }
 }
