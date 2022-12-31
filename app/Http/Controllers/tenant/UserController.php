@@ -20,7 +20,7 @@ class UserController extends Controller
     public function index()
     {
         $usuarios = User::all();
-        return view('tenant.users.index',compact('usuarios'));
+        return view('tenant.users.index', compact('usuarios'));
     }
 
     /**
@@ -32,8 +32,7 @@ class UserController extends Controller
     {
         $roles = Role::all();
         $departamentos = Departamento::all();
-        return view('tenant.users.create',compact('roles','departamentos'));
-        
+        return view('tenant.users.create', compact('roles', 'departamentos'));
     }
 
     /**
@@ -45,24 +44,24 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required',
-            'email'=>'required|unique:users',
-            'password'=>'required',
-            'roles'=>'required',
-            'departamentos'=>'required',
+            'name' => 'required',
+            'email' => 'required|unique:users',
+            'password' => 'required',
+            'roles' => 'required',
+            'departamentos' => 'required',
         ]);
-        
+
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-        $user->departamentos_id= $request->departamentos;
+        $user->departamentos_id = $request->departamentos;
         $user->save();
 
         $user->roles()->sync($request->roles);
-        
 
-        return redirect()->route('tenant.users',tenant('id'));   
+
+        return redirect()->route('tenant.users', tenant('id'));
     }
 
     /**
@@ -88,7 +87,7 @@ class UserController extends Controller
         $role_id = DB::table('model_has_roles',)->where('model_id', $user->id)->select('role_id')->first();
         $departamentos = Departamento::all();
         $departamento_id = DB::table('users',)->where('id', $user->id)->select('departamentos_id')->first();
-        return view('tenant.users.edit',compact('user','roles','role_id','departamentos','departamento_id'));
+        return view('tenant.users.edit', compact('user', 'roles', 'role_id', 'departamentos', 'departamento_id'));
     }
 
     /**
@@ -102,23 +101,23 @@ class UserController extends Controller
     {
         /* dd($request); */
         $request->validate([
-            'name'=>'required',
-            'email'=>'required',
-            'roles'=>'required',
-            'departamentos'=>'required',
+            'name' => 'required',
+            'email' => 'required',
+            'roles' => 'required',
+            'departamentos' => 'required',
         ]);
 
         $user->name = $request->name;
         $user->email = $request->email;
-        if($request->password <> ''){
+        if ($request->password <> '') {
             $user->password = Hash::make($request->password);
         }
-        $user->departamentos_id= $request->departamentos;
+        $user->departamentos_id = $request->departamentos;
         $user->save();
-        
+
         $user->roles()->sync($request->roles);
-        
-        return redirect()->route('tenant.users',tenant('id'));
+
+        return redirect()->route('tenant.users', tenant('id'));
     }
 
     /**
@@ -130,6 +129,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('tenant.users',tenant('id'));
+        return redirect()->route('tenant.users', tenant('id'));
     }
 }

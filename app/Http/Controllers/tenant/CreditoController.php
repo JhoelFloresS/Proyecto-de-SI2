@@ -25,14 +25,14 @@ class CreditoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre'=>'required|string|min:3',
-            'descripcion'=>'required|min:3',
+            'nombre' => 'required|string|min:3',
+            'descripcion' => 'required|min:3',
         ]);
 
         Credito::create($request->all());
         event(new RegistrarBitacoraTenant([
             'accion' => 'Creó un nuevo credito para la empresa, el usuario: '
-            .Auth::user()->name,
+                . Auth::user()->name,
         ]));
 
         return redirect()->route('tenant.creditos.index', tenant('id'));
@@ -46,14 +46,14 @@ class CreditoController extends Controller
     public function update(Request $request, Credito $credito)
     {
         $request->validate([
-            'nombre'=>'required|string|min:3',
-            'descripcion'=>'required|min:3',
+            'nombre' => 'required|string|min:3',
+            'descripcion' => 'required|min:3',
         ]);
 
         $credito->update($request->all());
         event(new RegistrarBitacoraTenant([
-            'accion' => 'Editó los datos del credito: '.$credito->nombre.', el usuario: '
-            .Auth::user()->name,
+            'accion' => 'Editó los datos del credito: ' . $credito->nombre . ', el usuario: '
+                . Auth::user()->name,
         ]));
 
         return redirect()->route('tenant.creditos.index', tenant('id'));
@@ -65,8 +65,10 @@ class CreditoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Credito $credito)
     {
         //
+        $credito->delete();
+        return redirect()->route('tenant.creditos.index', tenant('id'));
     }
 }

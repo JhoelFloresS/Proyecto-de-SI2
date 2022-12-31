@@ -13,4 +13,8 @@ class CarpetaCredito extends Model
         'requisitos',
     ];
 
+    public function solicitud()
+    {
+        return $this->belongsTo(SolicitudCredito::class, 'solicitud_id');
+    }
 }

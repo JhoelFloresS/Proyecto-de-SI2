@@ -112,6 +112,8 @@ Route::prefix('/{tenant}')->middleware([
         ->name('tenant.creditos.edit');
     Route::put('/creditos/{credito}', [App\Http\Controllers\tenant\CreditoController::class, 'update'])
         ->name('tenant.creditos.update');
+    Route::delete('/creditos/{credito}', [App\Http\Controllers\tenant\CreditoController::class, 'destroy'])
+        ->name('tenant.creditos.delete');
 
     //solicitudes
     Route::get('/solicitudes', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'index'])
@@ -120,4 +122,24 @@ Route::prefix('/{tenant}')->middleware([
         ->name('tenant.solicitudes.create');
     Route::post('/solicitudes', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'store'])
         ->name('tenant.solicitudes.store');
+    Route::get('/solicitudes/{solicitud}/edit/', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'edit'])
+        ->name('tenant.solicitudes.edit');
+    Route::put('/solicitudes/{solicitud}', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'update'])
+        ->name('tenant.solicitudes.update');
+    Route::delete('/solicitudes/{solicitud}', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'destroy'])
+        ->name('tenant.solicitudes.delete');
+
+    //carpeta credito
+    Route::get('/carpeta-credito', [App\Http\Controllers\tenant\CarpetaCreditoController::class, 'index'])
+        ->name('tenant.carpeta-credito.index');
+    Route::get('/carpeta-credito/create/', [App\Http\Controllers\tenant\CarpetaCreditoController::class, 'create'])
+        ->name('tenant.carpeta-credito.create');
+    Route::post('/carpeta-credito', [App\Http\Controllers\tenant\CarpetaCreditoController::class, 'store'])
+        ->name('tenant.carpeta-credito.store');
+    Route::get('/carpeta-credito/{carpeta}/edit/', [App\Http\Controllers\tenant\CarpetaCreditoController::class, 'edit'])
+        ->name('tenant.carpeta-credito.edit');
+    Route::put('/carpeta-credito/{carpeta}', [App\Http\Controllers\tenant\CarpetaCreditoController::class, 'update'])
+        ->name('tenant.carpeta-credito.update');
+    Route::delete('/carpeta-credito/{carpeta}', [App\Http\Controllers\tenant\CarpetaCreditoController::class, 'destroy'])
+        ->name('tenant.carpeta-credito.delete');
 });
