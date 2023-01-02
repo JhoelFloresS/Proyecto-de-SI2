@@ -24,6 +24,7 @@ class CreateTenantsTable extends Migration
             $table->string('email');
             $table->string('logo')->nullable();
             $table->string('pagina_web')->nullable();
+            $table->string('fuente')->nullable();
 
             $table->timestamps();
             $table->json('data')->nullable();

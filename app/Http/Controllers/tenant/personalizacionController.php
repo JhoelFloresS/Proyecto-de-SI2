@@ -60,14 +60,7 @@ class personalizacionController extends Controller
     public function edit( Request $request )
     {
        
-       $tenant = Tenant::find(tenant('id'));
-
-       $tenant->logo = $request->logo;
-       $tenant->pagina_web = $request->pagina;
-       $tenant->email = $request->email;
-       $tenant->save();
-
-       return redirect()->route('tenant.personalizacion',tenant('id'))->with('success', 'Editado correctamente');
+   
     }
 
     /**
@@ -77,9 +70,21 @@ class personalizacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $tenant = Tenant::find(tenant('id'));
+
+       
+        if(!$tenant->logo)
+             $tenant->logo = $request->logo;
+
+        $tenant->pagina_web = $request->pagina_web;
+        $tenant->email = $request->email;
+        $tenant->direccion = $request->direccion;
+        $tenant->fuente = $request->fuente;
+        $tenant->save();
+ 
+        return redirect()->route('tenant.personalizacion',tenant('id'))->with('success', 'Editado correctamente');
     }
 
     /**
