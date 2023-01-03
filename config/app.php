@@ -201,6 +201,9 @@ return [
         // libreria para generar PDF
         Barryvdh\DomPDF\ServiceProvider::class,
 
+        // Cloudinary, donde se guardaran los documentos :)
+        CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider::class,
+
     ],
 
     /*
@@ -216,9 +219,11 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Cloudinary' => CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary::class,
     ])->toArray(),
 
     //Libreria para generar PDF
     'PDF' => Barryvdh\DomPDF\Facade::class,
+    
 
 ];

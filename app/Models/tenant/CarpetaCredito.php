@@ -10,7 +10,7 @@ class CarpetaCredito extends Model
     use HasFactory;
     protected $fillable = [
         'solicitud_id',
-        'requisitos',
+        'requisito',
     ];
 
     public function solicitud()

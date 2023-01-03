@@ -94,8 +94,8 @@ Route::prefix('/{tenant}')->middleware([
     Route::get('/personalizacion', [App\Http\Controllers\tenant\personalizacionController::class, 'index'])
         ->middleware(['auth', 'auth.session'])->name('tenant.personalizacion');
 
-    Route::post('/personalizacion/edit', [App\Http\Controllers\tenant\personalizacionController::class, 'edit'])
-        ->middleware(['auth', 'auth.session'])->name('tenant.personalizacion.edit');
+    Route::post('/personalizacion/update', [App\Http\Controllers\tenant\personalizacionController::class, 'update'])
+        ->middleware(['auth', 'auth.session'])->name('tenant.personalizacion.update');
 
     //perfil
     Route::get('/perfil', [App\Http\Controllers\tenant\PerfilController::class, 'index'])
@@ -128,6 +128,11 @@ Route::prefix('/{tenant}')->middleware([
         ->name('tenant.solicitudes.update');
     Route::delete('/solicitudes/{solicitud}', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'destroy'])
         ->name('tenant.solicitudes.delete');
+    Route::get('/solcitudes/{solicitud}', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'show'])->name('tenant.solicitudes.show');
+
+    Route::get('/solicitudes/documentos/{carpetaId}', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'showDocuments'])
+    ->name('tenant.solicitudes.show.documents');
+    
 
     //carpeta credito
     Route::get('/carpeta-credito', [App\Http\Controllers\tenant\CarpetaCreditoController::class, 'index'])
@@ -142,4 +147,21 @@ Route::prefix('/{tenant}')->middleware([
         ->name('tenant.carpeta-credito.update');
     Route::delete('/carpeta-credito/{carpeta}', [App\Http\Controllers\tenant\CarpetaCreditoController::class, 'destroy'])
         ->name('tenant.carpeta-credito.delete');
+
+
+    // Documentos
+    Route::get('/documentos', [App\Http\Controllers\tenant\DocumentoController::class, 'index'])
+    ->name('tenant.documentos.index');
+    Route::get('/documentos/create/{carpetaId}', [App\Http\Controllers\tenant\DocumentoController::class, 'create'])
+    ->name('tenant.documentos.create');
+    Route::post('/documentos/{carpetaId}', [App\Http\Controllers\tenant\DocumentoController::class, 'store'])
+    ->name('tenant.documentos.store');
+    Route::get('/documentos/{documento}/{carpetaId}/edit/', [App\Http\Controllers\tenant\DocumentoController::class, 'edit'])
+    ->name('tenant.documentos.edit');
+    Route::put('/documentos/{documento}', [App\Http\Controllers\tenant\DocumentoController::class, 'update'])
+    ->name('tenant.documentos.update');
+    Route::get('/documentos/{documento}/{carpetaId}', [App\Http\Controllers\tenant\DocumentoController::class, 'show'])->name('tenant.documentos.show');
+    Route::delete('/documentos/{documento}', [App\Http\Controllers\tenant\DocumentoController::class, 'destroy'])
+    ->name('tenant.documentos.delete');
+
 });

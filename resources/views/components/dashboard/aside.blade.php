@@ -213,32 +213,32 @@
       </a>
     </li>
 
-    <li class="mt-0.5 w-full">
-      <a class=" @yield('aside-creditos', '') dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="{{route('tenant.creditos.index',tenant('id'))}}">
+    <div class="mt-0.5 w-full">
+      <div class=" dark:text-white dark:opacity-80 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="#">
         <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-          <i class="relative top-0 text-sm leading-normal text-red-500 ni ni-palette"></i>
+          <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-collection"></i>
         </div>
-        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Creditos</span>
-      </a>
-    </li>
-
-    <li class="mt-0.5 w-full">
-      <a class=" @yield('aside-solicitudes', '') dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="{{route('tenant.solicitudes.index',tenant('id'))}}">
-        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-          <i class="relative top-0 text-sm leading-normal text-red-500 ni ni-palette"></i>
-        </div>
-        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Solicitudes</span>
-      </a>
-    </li>
-
-    <li class="mt-0.5 w-full">
-      <a class=" @yield('aside-carpeta-credito', '') dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="{{route('tenant.carpeta-credito.index',tenant('id'))}}">
-        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-          <i class="relative top-0 text-sm leading-normal text-red-500 ni ni-palette"></i>
-        </div>
-        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Carpeta Credito</span>
-      </a>
-    </li>
+        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Procesos Crediticios</span>
+      </div>
+      <ul class="sidebar-dropdown list-unstyled">
+        <li class="mt-1 w-full">
+          <a class=" @yield('aside-creditos', '') dark:text-white dark:opacity-80 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-8 transition-colors" href="{{route('tenant.creditos.index',tenant('id'))}}">
+            <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+              <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-fat-add"></i>
+            </div>
+            <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Creditos</span>
+          </a>
+        </li>
+        <li class="mt-1 w-full">
+          <a class=" @yield('aside-solicitudes', '') dark:text-white dark:opacity-80 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-8 transition-colors" href="{{route('tenant.solicitudes.index',tenant('id'))}}">
+            <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+              <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-fat-add"></i>
+            </div>
+            <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Solicitudes</span>
+          </a>
+        </li>
+      </ul>
+    </div>
 
     <li class="mt-0.5 w-full">
       <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="#">
