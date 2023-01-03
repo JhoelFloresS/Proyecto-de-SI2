@@ -94,8 +94,8 @@ Route::prefix('/{tenant}')->middleware([
     Route::get('/personalizacion', [App\Http\Controllers\tenant\personalizacionController::class, 'index'])
         ->middleware(['auth', 'auth.session'])->name('tenant.personalizacion');
 
-    Route::post('/personalizacion/edit', [App\Http\Controllers\tenant\personalizacionController::class, 'edit'])
-        ->middleware(['auth', 'auth.session'])->name('tenant.personalizacion.edit');
+    Route::post('/personalizacion/update', [App\Http\Controllers\tenant\personalizacionController::class, 'update'])
+        ->middleware(['auth', 'auth.session'])->name('tenant.personalizacion.update');
 
     //perfil
     Route::get('/perfil', [App\Http\Controllers\tenant\PerfilController::class, 'index'])

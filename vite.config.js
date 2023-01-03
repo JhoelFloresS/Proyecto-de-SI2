@@ -16,6 +16,7 @@ export default defineConfig({
                 'resources/css/nucleo-icons.css',
                 'resources/css/nucleo-svg.css',
                 'resources/js/argon-dashboard-tailwind.js',
+                'resources/js/personalizacion/index.js',
             ],
             refresh: true,
         }),
