@@ -21,6 +21,7 @@ class Tenant extends BaseTenant implements TenantWithDatabase
         'email',
         'logo',
         'pagina_web',
+        'fuente'
     ];
 }
 }
