@@ -10,10 +10,11 @@ class SolicitudCredito extends Model
     use HasFactory;
 
     protected $fillable = [
-        'fecha_hora',
         'monto',
         'cliente_id',
         'credito_id',
+        'motivo',
+        'estado',
     ];
 
     public function cliente()
@@ -26,5 +27,9 @@ class SolicitudCredito extends Model
         return $this->belongsTo(Credito::class, 'credito_id');
     }
 
+    public function carpeta_credito()
+    {
+        return $this->hasOne(CarpetaCredito::class, 'solicitud_id');
+    }
 
 }
