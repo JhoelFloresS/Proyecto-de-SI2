@@ -5,7 +5,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /* controllers */
-use App\Http\Controllers\central\AutenticarController;
+use App\Http\Controllers\AuthenticatedAPIController;
+use App\Http\Controllers\central\CentralAPIController;
+use App\Http\Controllers\tenant\TenantAPIController;
+
 use Spatie\Permission\Contracts\Role;
 use Stancl\Tenancy\Middleware\InitializeTenancyByPath;
 /*
@@ -23,19 +26,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+/* tenantID */
+Route::post('tenantID', [CentralAPIController::class, 'tenantID']);
+
 /* login */
-Route::post('login', [AutenticarController::class, 'login']);
+Route::post('login', [AuthenticatedAPIController::class, 'login']);
 
 /* autent */
 Route::middleware('auth:sanctum')->group(function () {
     /* logout */
-    Route::post('logout', [AutenticarController::class, 'logout']);
+    Route::post('logout', [AuthenticatedAPIController::class, 'logout']);
     /* perfil GET */
-    Route::get('perfilGet', [AutenticarController::class, 'perfilGet']);
+    Route::get('perfilGet', [AuthenticatedAPIController::class, 'perfilGet']);
     /* planes GET */
-    Route::get('planesGet', [AutenticarController::class, 'planesGet']);
+    Route::get('planesGet', [CentralAPIController::class, 'planesGet']);
     /* suscripciones GET */
-    Route::get('suscripcionesGet', [AutenticarController::class, 'suscripcionesGet']);
+    Route::get('suscripcionesGet', [CentralAPIController::class, 'suscripcionesGet']);
 });
 
 Route::prefix('/{tenant}')->middleware([
@@ -43,16 +49,18 @@ Route::prefix('/{tenant}')->middleware([
     InitializeTenancyByPath::class,
 ])->group(function () {
     /* login */
-    Route::post('login', [AutenticarController::class, 'login']);
+    Route::post('login', [AuthenticatedAPIController::class, 'login']);
 
     Route::middleware('auth:sanctum')->group(function () {
         /* logout */
-        Route::post('logout', [AutenticarController::class, 'logout']);
+        Route::post('logout', [AuthenticatedAPIController::class, 'logout']);
         /* perfil GET */
-        Route::get('perfilGet', [AutenticarController::class, 'perfilGet']);
-        /* planes GET */
-        Route::get('planesGet', [AutenticarController::class, 'planesGet']);
-        /* suscripciones GET */
-        Route::get('suscripcionesGet', [AutenticarController::class, 'suscripcionesGet']);
+        Route::get('perfilGet', [AuthenticatedAPIController::class, 'perfilGet']);
+        /* departamentos GET */
+        Route::get('departamentosGet', [TenantAPIController::class, 'departamentosGet']);
+        /* clientes GET */
+        Route::get('clientesGet', [TenantAPIController::class, 'clientesGet']);
+        /* notificaion */
+        Route::post('notificacionToken', [TenantAPIController::class, 'notificacionToken']);
     });
 });
