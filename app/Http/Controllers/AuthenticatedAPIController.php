@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\central;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\tenant\Departamento;
 use Illuminate\Http\Request;
 
 /* Registro Request */
@@ -11,19 +12,15 @@ use Illuminate\Http\Request;
 use App\Models\User;
 /* user tenat */
 use App\Models\Tenant\User as UserTenant;
+use Carbon\Carbon;
 /* Auth */
 use Illuminate\Support\Facades\Auth;
-/* Carbon */
-use Carbon\Carbon;
 /* Acces token */
 use Illuminate\Support\Facades\Hash;
 /* Validator */
 use Illuminate\Support\Facades\Validator;
-/* plan */
-use App\Models\Plan;
-use App\Models\Suscripcion;
 
-class AutenticarController extends Controller
+class AuthenticatedAPIController extends Controller
 {
 
     public function login(Request $request)
@@ -94,19 +91,20 @@ class AutenticarController extends Controller
     public function logout()
     {
         Auth::user()->tokens()->delete();
+        /* Auth::user()->Passport::tokensExpireIn(Carbon::now()->addDays(15)); */
         return response()->json([
             'status' => 1,
             'message' => 'Successfully logged out'
         ]);
     }
 
-    public function user(Request $request)
+    /* public function user(Request $request)
     {
         return response()->json($request->user());
-    }
+    } */
 
     //
-    public function register(Request $request)
+    /* public function register(Request $request)
     {
         $usuario = new User();
         $usuario->name = $request->name;
@@ -114,48 +112,22 @@ class AutenticarController extends Controller
         $usuario->password = bcrypt($request->password);
         $usuario->save();
         return response()->json(['mensaje' => 'Usuario registrado correctamente']);
-    }
+    } */
 
     public function perfilGet(Request $request)
     {
         /* tomar datos de un usuario */
         $datosUsuario = User::where('id', $request->user()->id)->first();
+        $departamento_id = $datosUsuario->departamentos_id;
+        $departamento = Departamento::where('id', $departamento_id)->first();
+        /* $datosUsuario->departamento = $departamento; */
         /* $datosPersona = Persona::where('id', $datosUsuario->id_persona)->first(); */
         return response()->json([
             'status' => true,
             'message' => 'Datos del usuario',
             'usuario' => $datosUsuario,
+            'departamento' => $departamento
         ], 200);
-    }
-
-    public function planesGet()
-    {
-        /* tomar datos de un usuario */
-        $planes = Plan::all();
-        /* $datosPersona = Persona::where('id', $datosUsuario->id_persona)->first(); */
-        return $planes;
-    }
-
-    public function suscripcionesGet()
-    {
-        $suscripciones = Suscripcion::all();
-        $planes = Plan::all();
-
-        foreach ($suscripciones as $suscripcion) {
-            $suscripcion->plan = $planes->first();
-        }
-
-        return $suscripciones;
-
-        /* $resultado = array();
-
-        $resultado['suscripciones'] = $suscripciones;
-        $resultado['planes'] = $planes; */
-
-        /* return $resultado; */
-        /* return response()->json([
-            'suscripciones' => $suscripciones,
-            'planes' => $planes
-        ], 200); */
+        /* return $datosUsuario; */
     }
 }

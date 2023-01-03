@@ -11,6 +11,7 @@ use App\Models\tenant\CreditoDetalle;
 use App\Models\tenant\Documento;
 use App\Models\tenant\GestionCredito;
 use App\Models\tenant\SolicitudCredito;
+use App\Models\tenant\Notificacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -74,6 +75,45 @@ class SolicitudCreditoController extends Controller
             'accion' => 'Creó una nueva solicitud de credito para el cliente: '
                 . $cliente->user->name . ', el usuario: ' . Auth::user()->name,
         ]));
+
+
+        /* Notificaion */
+        $notificaciones = Notificacion::all();
+        /* dd($notificaciones); */
+        foreach ($notificaciones as $notificacion) {
+            $token = $notificacion->token;
+            $SERVER_API_KEY = 'AAAAqpLfBLQ:APA91bHv3ScDqlbT3V__n0UuXNPE0_2lcj7WuJV161TyYIjOPE78dYQJ20eU2pzKtuxsCpCrXQUHpbHDVezHGtdgl84ldl8iENaeksaR_TNePK3-GHiiV34GFx2X9QDB2QXOMvLZHhDZ';
+            $data = [
+                /* "registration_ids" => $firebaseToken, */
+                "registration_ids" => [$token],
+                "notification" => [
+                    "title" => 'Nueva Solicitud de Credito',
+                    "body" => 'Se ha creado una nueva solicitud de credito',
+                    "content_available" => true,
+                    "priority" => "high",
+                ]
+            ];
+            $dataString = json_encode($data);
+
+            $headers = [
+                'Authorization: key=' . $SERVER_API_KEY,
+                'Content-Type: application/json',
+            ];
+
+            $ch = curl_init();
+
+            curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+
+            $response = curl_exec($ch);
+
+            /* dd($response); */
+        }
+        /* Notificaion FIn */
 
         return redirect()->route('tenant.solicitudes.index', tenant('id'));
     }
@@ -154,6 +194,43 @@ class SolicitudCreditoController extends Controller
         return redirect()->route('tenant.solicitudes.index', tenant('id'));
     }
 
+    public function notificacion()
+    {
+        $notificaciones = Notificacion::all();
+        foreach ($notificaciones as $notificacion) {
+            $token = $notificacion->token;
+            $SERVER_API_KEY = 'AAAAqpLfBLQ:APA91bHv3ScDqlbT3V__n0UuXNPE0_2lcj7WuJV161TyYIjOPE78dYQJ20eU2pzKtuxsCpCrXQUHpbHDVezHGtdgl84ldl8iENaeksaR_TNePK3-GHiiV34GFx2X9QDB2QXOMvLZHhDZ';
+            $data = [
+                /* "registration_ids" => $firebaseToken, */
+                "registration_ids" => [$token],
+                "notification" => [
+                    "title" => 'Nueva Solicitud de Credito',
+                    "body" => 'Se ha creado una nueva solicitud de credito',
+                    "content_available" => true,
+                    "priority" => "high",
+                ]
+            ];
+            $dataString = json_encode($data);
+
+            $headers = [
+                'Authorization: key=' . $SERVER_API_KEY,
+                'Content-Type: application/json',
+            ];
+
+            $ch = curl_init();
+
+            curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+
+            $response = curl_exec($ch);
+
+            /* dd($response); */
+        }
+    }
     public function showDocuments($carpetaId) {
         $documentos = Documento::where('carpeta_id', $carpetaId)->get();
         return view('tenant.documentos.index', compact('documentos', 'carpetaId'));
