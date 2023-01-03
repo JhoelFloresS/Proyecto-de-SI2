@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('documentos', function (Blueprint $table) {
             $table->id();
             $table->string('archivo_url');
+            $table->string('public_id');
             $table->string('descripcion');
+            $table->string('formato');
             $table->dateTime('fecha_hora');
             $table->unsignedBigInteger('carpeta_id');
 

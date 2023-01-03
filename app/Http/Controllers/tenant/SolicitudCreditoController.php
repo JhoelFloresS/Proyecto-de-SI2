@@ -4,8 +4,11 @@ namespace App\Http\Controllers\tenant;
 
 use App\Events\tenant\RegistrarBitacoraTenant;
 use App\Http\Controllers\Controller;
+use App\Models\tenant\CarpetaCredito;
 use App\Models\tenant\Cliente;
 use App\Models\tenant\Credito;
+use App\Models\tenant\CreditoDetalle;
+use App\Models\tenant\Documento;
 use App\Models\tenant\GestionCredito;
 use App\Models\tenant\SolicitudCredito;
 use Illuminate\Http\Request;
@@ -37,16 +40,32 @@ class SolicitudCreditoController extends Controller
             'cliente_id' => 'required',
             'credito_id' => 'required',
             'monto' => 'required',
+            'motivo' => 'required',
+            'tasa_interes' => 'required',
+            'nro_cuotas' => 'required',
         ]);
         $solicitud = SolicitudCredito::create([
             'cliente_id' => $request->cliente_id,
             'credito_id' => $request->credito_id,
             'monto' => $request->monto,
             'fecha_hora' => date('Y-m-d H:i:s'),
+            'motivo' => $request->motivo,
+            'estado' => 'En proceso',
         ]);
         GestionCredito::create([
             'empleado_id' => Auth::user()->id,
             'solicitud_id' => $solicitud->id,
+        ]);
+        $carpeta = CarpetaCredito::create([
+            'solicitud_id' => $solicitud->id,
+            'requisito' => ''
+        ]);
+        CreditoDetalle::create([
+            'fecha_inicio' => date('Y-m-d H:i:s'),
+            'tasa_interes' => $request->tasa_interes,
+            'nro_cuotas' => $request->nro_cuotas,
+            'fecha_fin' => $request->fecha_fin,
+            'carpeta_id' => $carpeta->id,
         ]);
 
         $cliente = Cliente::findOrFail($request->cliente_id);
@@ -65,9 +84,14 @@ class SolicitudCreditoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(SolicitudCredito $solicitud)
     {
-        //
+        $solicitud->load('carpeta_credito');
+        $solicitud->load('cliente');
+        $solicitud->cliente->load('user');
+        $solicitud->load('credito');
+        $detalle = CreditoDetalle::where('carpeta_id', $solicitud->carpeta_credito->id)->first();
+        return view('tenant.solicitudes.show', compact('solicitud', 'detalle'));
     }
 
     /**
@@ -101,8 +125,6 @@ class SolicitudCreditoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        // dd($request->all());
         $request->validate([
             'cliente_id' => 'required',
             'credito_id' => 'required',
@@ -128,8 +150,13 @@ class SolicitudCreditoController extends Controller
      */
     public function destroy(SolicitudCredito $solicitud)
     {
-        //
         $solicitud->delete();
         return redirect()->route('tenant.solicitudes.index', tenant('id'));
     }
+
+    public function showDocuments($carpetaId) {
+        $documentos = Documento::where('carpeta_id', $carpetaId)->get();
+        return view('tenant.documentos.index', compact('documentos', 'carpetaId'));
+    }
+
 }

@@ -21,6 +21,9 @@
     <!-- Popper -->
     <script src="https://unpkg.com/@popperjs/core@2"></script>
 
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
     <style>
         body {
             font-family: @php echo tenant('fuente')??'"Open Sans", sans-serif';@endphp
@@ -29,6 +32,7 @@
 
     @vite(['resources/css/argon-dashboard-tailwind.css', 'resources/css/nucleo-icons.css', 'resources/css/nucleo-svg.css', 'resources/js/argon-dashboard-tailwind.js'])
     @yield('head')
+
 </head>
 
 <body
