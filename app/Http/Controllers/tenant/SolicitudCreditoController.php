@@ -44,6 +44,7 @@ class SolicitudCreditoController extends Controller
             'motivo' => 'required',
             'tasa_interes' => 'required',
             'nro_cuotas' => 'required',
+            'duracion' => 'required'
         ]);
         $solicitud = SolicitudCredito::create([
             'cliente_id' => $request->cliente_id,
@@ -67,6 +68,8 @@ class SolicitudCreditoController extends Controller
             'nro_cuotas' => $request->nro_cuotas,
             'fecha_fin' => $request->fecha_fin,
             'carpeta_id' => $carpeta->id,
+            'duracion' => $request->duracion,
+            'pago_estado' => 'En curso',
         ]);
 
         $cliente = Cliente::findOrFail($request->cliente_id);
@@ -141,19 +144,18 @@ class SolicitudCreditoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(SolicitudCredito $solicitud)
-    {
-        $clientes = Cliente::all();
-        $cliente_id = DB::table('solicitud_creditos')
-            ->where('id', $solicitud->id)
-            ->select('cliente_id')
-            ->first();
+    {   
+        $solicitud->load('carpeta_credito');
+        $solicitud->load('cliente');
+        $solicitud->cliente->load('user');
+        $solicitud->load('credito');
+
+        $clientes = Cliente::get();
         $clientes->load('user');
-        $creditos = Credito::all();
-        $credito_id = DB::table('solicitud_creditos')
-            ->where('id', $solicitud->id)
-            ->select('credito_id')
-            ->first();
-        return view('tenant.solicitudes.edit', compact('solicitud', 'clientes', 'cliente_id', 'creditos', 'credito_id'));
+        $creditos = Credito::get();
+        $detalle = CreditoDetalle::where('carpeta_id', $solicitud->carpeta_credito->id)->first();
+
+        return view('tenant.solicitudes.edit', compact('solicitud', 'clientes','creditos', 'detalle'));
     }
 
     /**
@@ -163,34 +165,54 @@ class SolicitudCreditoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, SolicitudCredito $solicitud)
     {
         $request->validate([
             'cliente_id' => 'required',
             'credito_id' => 'required',
             'monto' => 'required',
+            'motivo' => 'required',
+            'tasa_interes' => 'required',
+            'nro_cuotas' => 'required',
+            'duracion' => 'required',
+            'pago_estado' => 'required',
+            'estado' => 'required',
         ]);
-        $solicitud = SolicitudCredito::findOrFail($id);
+        if ($request->pago_estado == 'Pagado') {
+            // Cuando el cliente a cancelado todo el credito
+            $request->estado = 'Documentado';
+        }
         $solicitud->update([
             'cliente_id' => $request->cliente_id,
             'credito_id' => $request->credito_id,
             'monto' => $request->monto,
-            'fecha_hora' => date('Y-m-d H:i:s'),
+            'motivo' => $request->motivo,
+            'estado' => $request->estado,
         ]);
-        $cliente = Cliente::findOrFail($request->cliente_id);
-        $cliente->load('user');
+        $detalle = CreditoDetalle::findOrFail($solicitud->carpeta_credito->id);
+        $detalle->update([
+            'nro_cuotas' => $request->nro_cuotas,
+            'tasa_interes' => $request->tasa_interes,
+            'duracion' => $request->duracion,
+            'pago_estado' => $request->pago_estado,
+        ]);
+        event(new RegistrarBitacoraTenant([
+            'accion' => 'Editó una solicitud de credito del cliente: '
+                . $solicitud->cliente->user->name . ', el usuario: ' . Auth::user()->name,
+        ]));
+
         return redirect()->route('tenant.solicitudes.index', tenant('id'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(SolicitudCredito $solicitud)
     {
+        event(new RegistrarBitacoraTenant([
+            'accion' => 'Eliminó una solicitud de credito del cliente: '
+                . $solicitud->cliente->user->name . ', el usuario: ' . Auth::user()->name,
+        ]));
         $solicitud->delete();
+        
         return redirect()->route('tenant.solicitudes.index', tenant('id'));
     }
 
@@ -231,6 +253,7 @@ class SolicitudCreditoController extends Controller
             /* dd($response); */
         }
     }
+    
     public function showDocuments($carpetaId) {
         $documentos = Documento::where('carpeta_id', $carpetaId)->get();
         return view('tenant.documentos.index', compact('documentos', 'carpetaId'));

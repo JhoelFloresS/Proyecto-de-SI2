@@ -41,7 +41,13 @@
                                 <strong>Tasa de interes: </strong>
                                 <span class="text-gray-700">{{$detalle->tasa_interes}}%</span> <br>
                                 <strong>Nro de cuotas: </strong>
-                                <span class="text-gray-700">{{$detalle->nro_cuotas}}</span>
+                                <span class="text-gray-700">{{$detalle->nro_cuotas}}</span> <br>
+                                <strong>Duración: </strong>
+                                <span class="text-gray-700">{{$detalle->duracion}} Meses</span> <br>
+                                <strong>Cuota mensual: </strong>
+                                <span class="text-gray-700">
+                                    {{ intval(($solicitud->monto + ($solicitud->monto / $detalle->tasa_interes)) / $detalle->duracion) }} (Bs)
+                                </span>
                             </div>
                             <div class="px-6 pt-4 pb-2">
                               <a href="{{ route('tenant.solicitudes.index',tenant('id')) }}"class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Volver</a>

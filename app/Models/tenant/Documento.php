@@ -19,6 +19,7 @@ class Documento extends Model
         'descripcion',
         'fecha_hora',
         'formato',
+        'estado',
         'carpeta_id',
     ];
 

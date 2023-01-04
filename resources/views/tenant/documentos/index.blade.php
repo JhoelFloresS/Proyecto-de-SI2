@@ -26,6 +26,8 @@
                                     <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                         Fecha de subida</th>
                                     <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                        Estado</th>
+                                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                         Acción</th>
                                 </tr>
                             </thead>
@@ -66,6 +68,17 @@
                                         <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400">
                                             {{ $documento->fecha_hora }}
                                         </p>
+                                    </td>
+                                    <td class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                                        @if($documento->estado == 'En revisión')
+                                            <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-gray-700 bg-yellow-500 rounded-lg">
+                                                {{$documento->estado}}
+                                            </p>
+                                        @else
+                                            <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-gray-200 bg-green-500 rounded-lg">
+                                                {{ $documento->estado }}
+                                            </p>
+                                        @endif
                                     </td>
 
                                     <td class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">

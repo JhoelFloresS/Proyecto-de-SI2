@@ -41,7 +41,12 @@ class DocumentoController extends Controller
             'descripcion' => $request->descripcion,
             'fecha_hora' => date('Y-m-d H:i:s'),
             'carpeta_id' => $carpetaId,
+            'estado' => 'En revisión'
         ]);
+        $soliciud = SolicitudCredito::findOrFail($carpetaId);
+        //cada vez que se sube algun documento, la solicitud se encontrara en revisión
+        $soliciud->estado = 'En revisión'; 
+        $soliciud->save();
 
         event(new RegistrarBitacoraTenant([
             'accion' => 'Creó un nuevo documento, el usuario: '. Auth::user()->name,
@@ -81,6 +86,7 @@ class DocumentoController extends Controller
         }
 
         $documento->descripcion = $request->descripcion;
+        $documento->estado = $request->estado;
         $documento->save();
         $carpetaId = $documento->carpeta_id;
 

@@ -15,7 +15,8 @@ class CreditoDetalle extends Model
         'tasa_interes',
         'pago_estado',
         'nro_cuotas',
-        'carpeta_id'
+        'carpeta_id',
+        'duracion',
     ];
 
 

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('descripcion');
             $table->string('formato');
             $table->dateTime('fecha_hora');
+            $table->string('estado');
             $table->unsignedBigInteger('carpeta_id');
 
             $table->foreign('carpeta_id')->references('id')->on('carpeta_creditos')->cascadeOnDelete()->onUpdate('cascade');
