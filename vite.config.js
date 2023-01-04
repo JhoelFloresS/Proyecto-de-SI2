@@ -14,7 +14,6 @@ export default defineConfig({
                 'resources/js/formulario.js',
                 'resources/css/argon-dashboard-tailwind.css',
                 'resources/css/nucleo-icons.css',
-                'resources/css/nucleo-svg.css',
                 'resources/js/argon-dashboard-tailwind.js',
                 'resources/js/personalizacion/index.js',
                 'resources/ts/diagramas.ts',

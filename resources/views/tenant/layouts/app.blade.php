@@ -32,7 +32,7 @@
         }
     </style>
 
-    @vite(['resources/css/argon-dashboard-tailwind.css', 'resources/css/nucleo-icons.css', 'resources/css/nucleo-svg.css', 'resources/js/argon-dashboard-tailwind.js'])
+    @vite(['resources/css/argon-dashboard-tailwind.css', 'resources/css/nucleo-icons.css', 'resources/js/argon-dashboard-tailwind.js'])
     @yield('head')
 
 </head>
