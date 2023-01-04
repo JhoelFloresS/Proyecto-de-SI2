@@ -8,6 +8,7 @@ use App\Models\tenant\Bitacora;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByPath;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
+use App\Http\Controllers\tenant\ClienteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,45 +93,45 @@ Route::prefix('/{tenant}')->middleware([
 
     //personalizacion
     Route::get('/personalizacion', [App\Http\Controllers\tenant\personalizacionController::class, 'index'])
-        ->middleware(['auth', 'auth.session'])->name('tenant.personalizacion');
+        ->middleware(['auth', 'auth.session'])->middleware('can:Perzonalizacion')->name('tenant.personalizacion');
 
     Route::post('/personalizacion/update', [App\Http\Controllers\tenant\personalizacionController::class, 'update'])
-        ->middleware(['auth', 'auth.session'])->name('tenant.personalizacion.update');
+        ->middleware(['auth', 'auth.session'])->middleware('can:Perzonalizacion')->name('tenant.personalizacion.update');
 
     //perfil
     Route::get('/perfil', [App\Http\Controllers\tenant\PerfilController::class, 'index'])
-        ->middleware(['auth', 'auth.session'])->name('tenant.perfil');
+        ->middleware(['auth', 'auth.session'])->middleware('can:Gestionar Perfil')->name('tenant.perfil');
 
     //Creditos
-    Route::get('/creditos', [App\Http\Controllers\tenant\CreditoController::class, 'index'])
+    Route::get('/creditos', [App\Http\Controllers\tenant\CreditoController::class, 'index'])->middleware('can:Solicitudes')
         ->name('tenant.creditos.index');
-    Route::get('/creditos/create/', [App\Http\Controllers\tenant\CreditoController::class, 'create'])
+    Route::get('/creditos/create/', [App\Http\Controllers\tenant\CreditoController::class, 'create'])->middleware('can:Solicitudes')
         ->name('tenant.creditos.create');
-    Route::post('/creditos', [App\Http\Controllers\tenant\CreditoController::class, 'store'])
+    Route::post('/creditos', [App\Http\Controllers\tenant\CreditoController::class, 'store'])->middleware('can:Solicitudes')
         ->name('tenant.creditos.store');
-    Route::get('/creditos/{credito}/edit/', [App\Http\Controllers\tenant\CreditoController::class, 'edit'])
+    Route::get('/creditos/{credito}/edit/', [App\Http\Controllers\tenant\CreditoController::class, 'edit'])->middleware('can:Solicitudes')
         ->name('tenant.creditos.edit');
-    Route::put('/creditos/{credito}', [App\Http\Controllers\tenant\CreditoController::class, 'update'])
+    Route::put('/creditos/{credito}', [App\Http\Controllers\tenant\CreditoController::class, 'update'])->middleware('can:Solicitudes')
         ->name('tenant.creditos.update');
-    Route::delete('/creditos/{credito}', [App\Http\Controllers\tenant\CreditoController::class, 'destroy'])
+    Route::delete('/creditos/{credito}', [App\Http\Controllers\tenant\CreditoController::class, 'destroy'])->middleware('can:Solicitudes')
         ->name('tenant.creditos.delete');
 
     //solicitudes
-    Route::get('/solicitudes', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'index'])
+    Route::get('/solicitudes', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'index'])->middleware('can:Solicitudes')
         ->name('tenant.solicitudes.index');
-    Route::get('/solicitudes/create/', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'create'])
+    Route::get('/solicitudes/create/', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'create'])->middleware('can:Solicitudes')
         ->name('tenant.solicitudes.create');
-    Route::post('/solicitudes', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'store'])
+    Route::post('/solicitudes', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'store'])->middleware('can:Solicitudes')
         ->name('tenant.solicitudes.store');
-    Route::get('/solicitudes/{solicitud}/edit/', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'edit'])
+    Route::get('/solicitudes/{solicitud}/edit/', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'edit'])->middleware('can:Solicitudes')
         ->name('tenant.solicitudes.edit');
-    Route::put('/solicitudes/{solicitud}', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'update'])
+    Route::put('/solicitudes/{solicitud}', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'update'])->middleware('can:Solicitudes')
         ->name('tenant.solicitudes.update');
-    Route::delete('/solicitudes/{solicitud}', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'destroy'])
+    Route::delete('/solicitudes/{solicitud}', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'destroy'])->middleware('can:Solicitudes')
         ->name('tenant.solicitudes.delete');
-    Route::get('/solcitudes/{solicitud}', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'show'])->name('tenant.solicitudes.show');
+    Route::get('/solcitudes/{solicitud}', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'show'])->middleware('can:Solicitudes')->name('tenant.solicitudes.show');
 
-    Route::get('/solicitudes/documentos/{carpetaId}', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'showDocuments'])
+    Route::get('/solicitudes/documentos/{carpetaId}', [App\Http\Controllers\tenant\SolicitudCreditoController::class, 'showDocuments'])->middleware('can:Solicitudes')
     ->name('tenant.solicitudes.show.documents');
     
 
@@ -150,18 +151,39 @@ Route::prefix('/{tenant}')->middleware([
 
 
     // Documentos
-    Route::get('/documentos', [App\Http\Controllers\tenant\DocumentoController::class, 'index'])
+    Route::get('/documentos', [App\Http\Controllers\tenant\DocumentoController::class, 'index'])->middleware(['auth', 'auth.session'])
     ->name('tenant.documentos.index');
-    Route::get('/documentos/create/{carpetaId}', [App\Http\Controllers\tenant\DocumentoController::class, 'create'])
+    Route::get('/documentos/create/{carpetaId}', [App\Http\Controllers\tenant\DocumentoController::class, 'create'])->middleware(['auth', 'auth.session'])
     ->name('tenant.documentos.create');
-    Route::post('/documentos/{carpetaId}', [App\Http\Controllers\tenant\DocumentoController::class, 'store'])
+    Route::post('/documentos/{carpetaId}', [App\Http\Controllers\tenant\DocumentoController::class, 'store'])->middleware(['auth', 'auth.session'])
     ->name('tenant.documentos.store');
-    Route::get('/documentos/{documento}/{carpetaId}/edit/', [App\Http\Controllers\tenant\DocumentoController::class, 'edit'])
+    Route::get('/documentos/{documento}/{carpetaId}/edit/', [App\Http\Controllers\tenant\DocumentoController::class, 'edit'])->middleware(['auth', 'auth.session'])
     ->name('tenant.documentos.edit');
-    Route::put('/documentos/{documento}', [App\Http\Controllers\tenant\DocumentoController::class, 'update'])
+    Route::put('/documentos/{documento}', [App\Http\Controllers\tenant\DocumentoController::class, 'update'])->middleware(['auth', 'auth.session'])
     ->name('tenant.documentos.update');
-    Route::get('/documentos/{documento}/{carpetaId}', [App\Http\Controllers\tenant\DocumentoController::class, 'show'])->name('tenant.documentos.show');
-    Route::delete('/documentos/{documento}', [App\Http\Controllers\tenant\DocumentoController::class, 'destroy'])
+    Route::get('/documentos/{documento}/{carpetaId}', [App\Http\Controllers\tenant\DocumentoController::class, 'show'])->middleware(['auth', 'auth.session'])->name('tenant.documentos.show');
+    Route::delete('/documentos/{documento}', [App\Http\Controllers\tenant\DocumentoController::class, 'destroy'])->middleware(['auth', 'auth.session'])
     ->name('tenant.documentos.delete');
+
+
+       //clientes
+    Route::get('/clientes', [ClienteController::class, 'index'])
+       ->middleware(['auth', 'auth.session'])->middleware('can:Clientes')->name('tenant.clientes');
+
+    Route::get('/clientes/create', [ClienteController::class, 'create'])
+        ->middleware(['auth', 'auth.session'])->middleware('can:Clientes')->name('tenant.clientes.create');
+
+    Route::post('/clientes/store', [ClienteController::class, 'store'])
+        ->middleware(['auth', 'auth.session'])->name('tenant.clientes.store');
+
+    Route::get('/{user}/clientes/edit', [ClienteController::class, 'edit'])
+        ->middleware(['auth', 'auth.session'])->middleware('can:Clientes')->name('tenant.clientes.edit');
+
+    Route::put('/{user}/clientes/update', [ClienteController::class, 'update'])
+        ->middleware(['auth', 'auth.session'])->middleware('can:Clientes')->name('tenant.clientes.update');
+
+    Route::delete('/{user}/clientes/', [ClienteController::class, 'destroy'])
+        ->middleware(['auth', 'auth.session'])->middleware('can:Clientes')->name('tenant.clientes.delete');
+
 
 });

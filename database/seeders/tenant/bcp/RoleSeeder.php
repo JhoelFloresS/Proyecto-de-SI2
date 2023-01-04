@@ -21,15 +21,20 @@ class RoleSeeder extends Seeder
         $role3 = Role::create(['name' => 'Oficial de Credito']);
         $role4 = Role::create(['name' => 'Comité de Credito']);
         $role5 = Role::create(['name' => 'Departamento Legal']);
-        $role6 = Role::create(['name' => 'Cliente']);
         
         
-        $permission = Permission::create(['name' => 'Gestionar Perfil'])->syncRoles([$role1,$role2,$role3,$role4,$role5,$role6]);
+        $permission = Permission::create(['name' => 'Gestionar Perfil'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
         $permission = Permission::create(['name' => 'Gestionar Usuarios'])->syncRoles([$role1]);
         $permission = Permission::create(['name' => 'Gestionar Roles'])->syncRoles([$role1]);
         $permission = Permission::create(['name' => 'Gestionar Bitacora'])->syncRoles([$role1]);
         $permission = Permission::create(['name' => 'backups'])->syncRoles([$role1]);
-        $permission = Permission::create(['name' => 'Administracion'])->syncRoles([$role1]);
+        $permission = Permission::create(['name' => 'Administracion'])->syncRoles([$role1,$role3,$role4]);
+        $permission = Permission::create(['name' => 'Clientes'])->syncRoles([$role1,$role2,$role3,$role4]);
+        $permission = Permission::create(['name' => 'Perzonalizacion'])->syncRoles([$role1]);
+        $permission = Permission::create(['name' => 'Procesos Crediticios'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        $permission = Permission::create(['name' => 'Creditos'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        $permission = Permission::create(['name' => 'Solicitudes'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        $permission = Permission::create(['name' => 'Reportes'])->syncRoles([$role1,$role2]);
       
         
         

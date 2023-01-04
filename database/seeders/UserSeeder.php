@@ -71,28 +71,28 @@ class UserSeeder extends Seeder
             'password' => $password,
             'foto' => "https://bootadmin.org/images/demo/user.jpg",
             'telefono' => '63130372',
-        ]);
+        ])->assignRole('Admin');;
         User::create([
             'name' => 'Pedro Fernandez Salvatierra',
             'email' => 'pedro@gmail.com',
             'password' => $password,
             'foto' => "https://bootadmin.org/images/demo/user.jpg",
             'telefono' => '63235385',
-        ]);
+        ])->assignRole('Admin');;
         User::create([
             'name' => 'Maria Montero Martinez',
             'email' => 'maria@gmail.com',
             'password' => $password,
             'foto' => "https://bootadmin.org/images/demo/user.jpg",
             'telefono' => '75484852',
-        ]);
+        ])->assignRole('Admin');;
         User::create([
             'name' => 'Julio Molina Peres',
             'email' => 'julio@gmail.com',
             'password' => $password,
             'foto' => "https://bootadmin.org/images/demo/user.jpg",
             'telefono' => '63130148',
-        ]);
+        ])->assignRole('Admin');;
 
 
 
