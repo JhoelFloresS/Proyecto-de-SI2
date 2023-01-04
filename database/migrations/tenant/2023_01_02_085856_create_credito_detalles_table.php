@@ -18,8 +18,9 @@ return new class extends Migration
             $table->date('fecha_inicio');
             $table->date('fecha_fin')->nullable();
             //$table->boolean('estado');
+            $table->integer('duracion')->nullable();
             $table->float('tasa_interes')->nullable();
-            $table->boolean('pago_estado')->nullable();
+            $table->string('pago_estado')->nullable();
             $table->integer('nro_cuotas')->nullable();
             $table->unsignedBigInteger('carpeta_id');
 

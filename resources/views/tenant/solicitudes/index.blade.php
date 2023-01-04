@@ -60,9 +60,24 @@
                                         </p>
                                     </td>
                                     <td class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                                        <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400">
-                                            {{ $solicitud->estado }}
-                                        </p>
+                                        @if ($solicitud->estado == 'En proceso')
+                                            <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-gray-200 bg-blue-500 rounded-lg">
+                                                {{ $solicitud->estado }}
+                                            </p>
+                                        @elseif($solicitud->estado == 'En revisión')
+                                            <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-gray-700 bg-yellow-500 rounded-lg">
+                                                {{ $solicitud->estado }}
+                                            </p>
+                                        @elseif($solicitud->estado == 'Aprobado')
+                                            <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-gray-200 bg-green-500 rounded-lg">
+                                                {{ $solicitud->estado }}
+                                            </p>
+                                        @else
+                                            <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-gray-200 bg-red-500 rounded-lg">
+                                                {{ $solicitud->estado }}
+                                            </p>
+                                        @endif
+                                        
                                         
                                     </td>
                                     <td class="px-6 py-3 font-bold text-center items-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid">
@@ -81,7 +96,7 @@
                                                 @csrf
                                                 @method('delete') 
                                                 <!-- Button  Edit style css-->
-                                                <a class="px-1" href="#">
+                                                <a class="px-1" href="{{ route('tenant.solicitudes.edit',[tenant('id'), $solicitud]) }}">
                                                     <button type="button" title="Editar">
                                                         <span class="material-symbols-outlined">edit</span>
                                                     </button>
