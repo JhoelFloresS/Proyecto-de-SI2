@@ -62,9 +62,9 @@ class TenantController extends BaseController
         Permission::create(['name' => 'Creditos'])->syncRoles([$role1]);
         Permission::create(['name' => 'Solicitudes'])->syncRoles([$role1]);
         Permission::create(['name' => 'Reportes'])->syncRoles([$role1]);
-
+         Permission::create(['name' => 'Diagramador'])->syncRoles([$role1]);
         
-        $user->roles()->sync('Admin');
+        $user->roles()->sync(1);
         
         return redirect()->route('tenant.users', tenant('id'));
     }

@@ -40,7 +40,7 @@ Route::prefix('/{tenant}')->middleware([
 
     //diagramas
     Route::get('/diagramas', [App\Http\Controllers\tenant\DiagramaController::class, 'index'])
-        ->middleware(['auth', 'auth.session'])->name('tenant.diagramas');
+        ->middleware(['auth', 'auth.session'])->middleware('can:Diagramador')->name('tenant.diagramas');
 
 
     //backups
