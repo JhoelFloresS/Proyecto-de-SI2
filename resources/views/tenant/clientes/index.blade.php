@@ -1,5 +1,5 @@
-@section('navbar', 'Empleados')
-@section('aside-empleados', 'py-2.7 bg-blue-500/13')
+@section('navbar', 'Clientes')
+@section('aside-clientes', 'py-2.7 bg-blue-500/13')
 <x-tenant-app title="users">
      {{-- <div class="card">
         <div class="card-header ">
@@ -51,11 +51,11 @@
         <div class="flex-none w-full max-w-full px-3">
             <div class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                 <div class="p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-                    <h6 class="dark:text-white">Empleados</h6>
+                    <h6 class="dark:text-white">Clientes</h6>
                 </div>
 
                 <!-- button crear usuario "a" style css -->
-                <a class="bg-gradient-to-tl from-blue-500 to-violet-500 text-white px-4 py-2 rounded-full" style="width: 175px; text-align: center; margin-left: 20px;" href="{{ route('tenant.users.create',tenant('id')) }}">Crear Empleado</a>
+                <a class="bg-gradient-to-tl from-blue-500 to-violet-500 text-white px-4 py-2 rounded-full" style="width: 150px; text-align: center; margin-left: 20px;" href="{{ route('tenant.clientes.create',tenant('id')) }}">Crear Cliente</a>
                 <br>
 
                 <div class="flex-auto px-0 pt-0 pb-2">
@@ -70,55 +70,49 @@
                                     <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                         Correo electronico</th>
                                     <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                        Rol</th>
-                                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                        Departamento</th>
+                                        Telefono</th>
                                     <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                         Acciones
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($usuarios as $empleado)
+                                @foreach ($clientes as $cliente)
                                 <tr>
                                     <td class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                         <div class="flex px-2 py-1">
                                             <div class="flex flex-col justify-center">
                                                 <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400">
-                                                    {{  $empleado->user->id }}
+                                                    {{ $cliente->user_id }}
                                                 </p>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                         <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400">
-                                            {{ $empleado->user->name }}
+                                            {{ $cliente->user->name }}
                                         </p>
                                     </td>
                                     <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                         <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400">
-                                            {{ $empleado->user->email }}
+                                            {{ $cliente->user->email }}
                                         </p>
                                     </td>
-                                    <td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                                        <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400">
-                                            {{ $empleado->user->getRoleNames()->first()}}
-                                        </p>
-                                    </td>
+                                    
                                     <td class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                         <span class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
-                                            {{$empleado->user->departamentos->nombre}}
+                                            {{$cliente->user->telefono}}
                                         </span>
                                     </td>
                                     <td class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                                        <form action="{{ route('tenant.users.delete',[tenant('id'),$empleado->user]) }}" method="post">
+                                        <form action="{{ route('tenant.clientes.delete',[tenant('id'),$cliente->user]) }}" method="post">
                                             @csrf
                                             @method('delete')
                                              {{-- <a href="{{ route('tenant.users.edit',[tenant('id'), $user]) }}" class="btn btn-dark btn-sm">Editar<a> -->
                                              <button class="btn btn-danger btn-sm" onclick="return confirm('¿ESTÁ SEGURO DE BORRAR?')" value="Borrar">Eliminar</button> --> --}}
 
                                             <!-- Button  Edit style css-->
-                                            <a style="background-color: #4299E1; border: none; color: white; padding: 5px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 12px; margin: 4px 2px; cursor: pointer;" href="{{ route('tenant.users.edit',[tenant('id'), $empleado->user]) }}">Editar</a>
+                                            <a style="background-color: #4299E1; border: none; color: white; padding: 5px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 12px; margin: 4px 2px; cursor: pointer;" href="{{ route('tenant.clientes.edit',[tenant('id'), $cliente->user]) }}">Editar</a>
 
                                             <!-- Button "Delete style css" -->
                                             <button style="background-color: #F56565; border: none; color: white; padding: 5px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 12px; margin: 4px 2px; cursor: pointer;" onclick="return confirm('¿ESTÁ SEGURO DE BORRAR?')" value="Borrar">Eliminar</button>

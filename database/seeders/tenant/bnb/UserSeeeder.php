@@ -102,6 +102,7 @@ class UserSeeeder extends Seeder
             'departamentos_id' => 3
         ])->assignRole('Comité de Credito');
 
+        //clientes
         User::create([
             'name' => 'Julio Mendoza',
             'email' => 'julio_bnb@gmail.com',
@@ -109,7 +110,7 @@ class UserSeeeder extends Seeder
             'foto' => null,
             'telefono' => '62141480',
             'departamentos_id' => 4
-        ])->assignRole('Departamento Legal');
+        ]);
         User::create([
             'name' => 'Maria Salvatierra Torrez',
             'email' => 'maria_bnb@gmail.com',
@@ -117,7 +118,7 @@ class UserSeeeder extends Seeder
             'foto' => null,
             'telefono' => '74185857',
             'departamentos_id' => 4
-        ])->assignRole('Departamento Legal');
+        ]);
 
         User::create([
             'name' => 'Pedro Burgoa',
@@ -126,7 +127,7 @@ class UserSeeeder extends Seeder
             'foto' => null,
             'telefono' => '74196965',
             'departamentos_id' => 5
-        ])->assignRole('Departamento Legal');
+        ]);
         User::create([
             'name' => 'Jose Valverde',
             'email' => 'jose_bnb@gmail.com',
@@ -134,7 +135,7 @@ class UserSeeeder extends Seeder
             'foto' => null,
             'telefono' => '63152954',
             'departamentos_id' => 5
-        ])->assignRole('Departamento Legal');
+        ]);
         User::create([
             'name' => 'Sebastian Medrano Peres',
             'email' => 'sebastian_bnb@gmail.com',
@@ -142,6 +143,6 @@ class UserSeeeder extends Seeder
             'foto' => null,
             'telefono' => '63120987',
             'departamentos_id' => 5
-        ])->assignRole('Departamento Legal');
+        ]);
     } 
 }

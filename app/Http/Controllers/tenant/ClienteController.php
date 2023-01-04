@@ -4,14 +4,14 @@ namespace App\Http\Controllers\tenant;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\tenant\Cliente;
 use App\Models\tenant\Departamento;
-use App\Models\tenant\Empleado;
 use App\Models\User;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 
-class UserController extends Controller
+class ClienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,9 +20,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $usuarios = Empleado::all();
-        return view('tenant.users.index', compact('usuarios'));
-        
+        $clientes = Cliente::all();
+        return view('tenant.clientes.index', compact('clientes'));
     }
 
     /**
@@ -32,9 +31,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
-        $departamentos = Departamento::all();
-        return view('tenant.users.create', compact('roles', 'departamentos'));
+        return view('tenant.clientes.create');
     }
 
     /**
@@ -48,23 +45,18 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|unique:users',
-            'password' => 'required',
-            'roles' => 'required',
-            'departamentos' => 'required',
         ]);
 
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->departamentos_id = $request->departamentos;
+        $user->password = Hash::make('1234');
+        $user->telefono = $request->telefono;
         $user->save();
+        
+        Cliente::create(['user_id' => $user->id]);
 
-        $user->roles()->sync($request->roles);
-
-        Empleado::create(['user_id' => $user->id]);
-
-        return redirect()->route('tenant.users', tenant('id'));
+        return redirect()->route('tenant.clientes', tenant('id'));
     }
 
     /**
@@ -86,11 +78,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $roles = Role::all();
-        $role_id = DB::table('model_has_roles',)->where('model_id', $user->id)->select('role_id')->first();
-        $departamentos = Departamento::all();
-        $departamento_id = DB::table('users',)->where('id', $user->id)->select('departamentos_id')->first();
-        return view('tenant.users.edit', compact('user', 'roles', 'role_id', 'departamentos', 'departamento_id'));
+      
+        return view('tenant.clientes.edit', compact('user'));
     }
 
     /**
@@ -106,21 +95,14 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'roles' => 'required',
-            'departamentos' => 'required',
         ]);
 
         $user->name = $request->name;
         $user->email = $request->email;
-        if ($request->password <> '') {
-            $user->password = Hash::make($request->password);
-        }
-        $user->departamentos_id = $request->departamentos;
+        $user->telefono = $request->telefono;
         $user->save();
 
-        $user->roles()->sync($request->roles);
-
-        return redirect()->route('tenant.users', tenant('id'));
+        return redirect()->route('tenant.clientes', tenant('id'));
     }
 
     /**
@@ -132,6 +114,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('tenant.users', tenant('id'));
+        return redirect()->route('tenant.clientes', tenant('id'));
     }
 }

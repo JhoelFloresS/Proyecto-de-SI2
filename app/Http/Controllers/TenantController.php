@@ -47,13 +47,25 @@ class TenantController extends BaseController
         $user->departamentos_id= $departamento->id;
         $user->save();
 
-        Permission::create(['name' => 'Gestionar Perfil']);
-        Permission::create(['name' => 'Gestionar Usuarios']);
-        Permission::create(['name' => 'Gestionar Roles']);
-        Permission::create(['name' => 'Gestionar Bitacora']);
-      
-        $user->roles()->sync(  Role::create(['name' => 'admin']));
+  
+        $role1 = Role::create(['name' => 'Admin']);
 
+        Permission::create(['name' => 'Gestionar Perfil'])->syncRoles([$role1]);
+        Permission::create(['name' => 'Gestionar Usuarios'])->syncRoles([$role1]);
+        Permission::create(['name' => 'Gestionar Roles'])->syncRoles([$role1]);
+        Permission::create(['name' => 'Gestionar Bitacora'])->syncRoles([$role1]);
+        Permission::create(['name' => 'backups'])->syncRoles([$role1]);
+        Permission::create(['name' => 'Administracion'])->syncRoles([$role1]);
+        Permission::create(['name' => 'Clientes'])->syncRoles([$role1]);
+        Permission::create(['name' => 'Perzonalizacion'])->syncRoles([$role1]);
+        Permission::create(['name' => 'Procesos Crediticios'])->syncRoles([$role1]);
+        Permission::create(['name' => 'Creditos'])->syncRoles([$role1]);
+        Permission::create(['name' => 'Solicitudes'])->syncRoles([$role1]);
+        Permission::create(['name' => 'Reportes'])->syncRoles([$role1]);
+         Permission::create(['name' => 'Diagramador'])->syncRoles([$role1]);
+        
+        $user->roles()->sync(1);
+        
         return redirect()->route('tenant.users', tenant('id'));
     }
 

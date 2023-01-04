@@ -152,6 +152,8 @@
         <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Dashboard</span>
       </a>
     </li>
+    
+    @can('Diagramador')
     <li class="mt-0.5 w-full">
       <a class="@yield('aside-diagramas', '') dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="{{route('tenant.diagramas',tenant('id'))}}">
         <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
@@ -160,6 +162,7 @@
         <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Procesos de negocios</span>
       </a>
     </li>
+    @endcan
 
     @can('Administracion')
     <div class="mt-0.5 w-full">
@@ -171,13 +174,24 @@
       </div>
       <ul class="sidebar-dropdown list-unstyled">
         <li class="mt-1 w-full">
-          <a class=" @yield('aside-usuarios', '') dark:text-white dark:opacity-80 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-8 transition-colors" href="{{route('tenant.users',tenant('id'))}}">
+          @can('Gestionar Usuarios')
+          <a class=" @yield('aside-empleados', '') dark:text-white dark:opacity-80 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-8 transition-colors" href="{{route('tenant.users',tenant('id'))}}">
             <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
               <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-circle-08"></i>
             </div>
-            <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Usuarios</span>
+            <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Empleados</span>
           </a>
+          @endcan
+          @can('Clientes')
+          <a class=" @yield('aside-clientes', '') dark:text-white dark:opacity-80 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-8 transition-colors" href="{{route('tenant.clientes',tenant('id'))}}">
+            <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+              <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-circle-08"></i>
+            </div>
+            <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Clientes</span>
+          </a>
+          @endcan
         </li>
+        @can('Gestionar Roles')
         <li class="mt-1 w-full">
           <a class=" @yield('aside-roles', '') dark:text-white dark:opacity-80 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-8 transition-colors" href="{{route('tenant.roles',tenant('id'))}}">
             <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
@@ -186,6 +200,7 @@
             <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Roles</span>
           </a>
         </li>
+        @endcan
       </ul>
     </div>
     @endcan
@@ -212,6 +227,7 @@
     </li>
     @endcan
 
+    @can('Perzonalizacion')
     <li class="mt-0.5 w-full">
       <a class=" @yield('aside-personalizacion', '') dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="{{route('tenant.personalizacion',tenant('id'))}}">
         <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
@@ -220,7 +236,9 @@
         <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Personalizacion</span>
       </a>
     </li>
+    @endcan
 
+    @can('Procesos Crediticios')
     <div class="mt-0.5 w-full">
       <div class=" dark:text-white dark:opacity-80 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="#">
         <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
@@ -229,6 +247,7 @@
         <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Procesos Crediticios</span>
       </div>
       <ul class="sidebar-dropdown list-unstyled">
+        @can('Creditos')
         <li class="mt-1 w-full">
           <a class=" @yield('aside-creditos', '') dark:text-white dark:opacity-80 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-8 transition-colors" href="{{route('tenant.creditos.index',tenant('id'))}}">
             <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
@@ -236,7 +255,10 @@
             </div>
             <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Creditos</span>
           </a>
+         
         </li>
+        @endcan
+        @can('Solicitudes')
         <li class="mt-1 w-full">
           <a class=" @yield('aside-solicitudes', '') dark:text-white dark:opacity-80 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-8 transition-colors" href="{{route('tenant.solicitudes.index',tenant('id'))}}">
             <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
@@ -245,8 +267,11 @@
             <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Solicitudes</span>
           </a>
         </li>
+        @endcan
       </ul>
     </div>
+
+    @endcan
 
     <li class="mt-0.5 w-full">
       <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="#">
