@@ -13,7 +13,10 @@
     @vite(['resources/ts/diagramas.ts', 'resources/js/diagramas.js', 'resources/css/diagramas.css'])
 
 @endsection
+
+
 <x-tenant-app title="documento">
+ 
     <div x-data="diagrama">
         <div>
             <div x-model="title" id="currentFile">(Archivo sin Guardar)</div>
