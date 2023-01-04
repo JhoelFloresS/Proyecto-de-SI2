@@ -1,7 +1,7 @@
 @section('navbar', 'Usuarios')
 @section('aside-usuarios', 'py-2.7 bg-blue-500/13')
 <x-tenant-app title="users">
-    <!-- <div class="card">
+     {{-- <div class="card">
         <div class="card-header ">
             <a href="{{ route('tenant.users.create',tenant('id')) }}" class="btn  btn-warning btn-lg">Crear Usuario</a>
         </div>
@@ -42,7 +42,7 @@
                 </tbody>
             </table>
         </div>
-    </div> -->
+    </div>  --}}
 
 
     <!-- table 1 -->
@@ -56,9 +56,11 @@
 
                 <!-- button crear usuario "a" style css -->
                 <a class="bg-gradient-to-tl from-blue-500 to-violet-500 text-white px-4 py-2 rounded-full" style="width: 150px; text-align: center; margin-left: 20px;" href="{{ route('tenant.users.create',tenant('id')) }}">Crear Usuario</a>
+                <br>
+
                 <div class="flex-auto px-0 pt-0 pb-2">
                     <div class="p-0 overflow-x-auto">
-                        <table class="items-center w-full mb-0 align-top border-collapse dark:border-white/40 text-slate-500">
+                        <table id="tabla" class="items-center w-full mb-0 align-top border-collapse dark:border-white/40 text-slate-500">
                             <thead class="align-bottom">
                                 <tr>
                                     <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
@@ -112,8 +114,8 @@
                                         <form action="{{ route('tenant.users.delete',[tenant('id'),$user]) }}" method="post">
                                             @csrf
                                             @method('delete')
-                                            <!-- <a href="{{ route('tenant.users.edit',[tenant('id'), $user]) }}" class="btn btn-dark btn-sm">Editar<a> -->
-                                            <!-- <button class="btn btn-danger btn-sm" onclick="return confirm('¿ESTÁ SEGURO DE BORRAR?')" value="Borrar">Eliminar</button> -->
+                                             {{-- <a href="{{ route('tenant.users.edit',[tenant('id'), $user]) }}" class="btn btn-dark btn-sm">Editar<a> -->
+                                             <button class="btn btn-danger btn-sm" onclick="return confirm('¿ESTÁ SEGURO DE BORRAR?')" value="Borrar">Eliminar</button> --> --}}
 
                                             <!-- Button  Edit style css-->
                                             <a style="background-color: #4299E1; border: none; color: white; padding: 5px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 12px; margin: 4px 2px; cursor: pointer;" href="{{ route('tenant.users.edit',[tenant('id'), $user]) }}">Editar</a>
