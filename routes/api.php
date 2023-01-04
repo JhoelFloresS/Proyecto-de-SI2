@@ -62,5 +62,9 @@ Route::prefix('/{tenant}')->middleware([
         Route::get('clientesGet', [TenantAPIController::class, 'clientesGet']);
         /* notificaion */
         Route::post('notificacionToken', [TenantAPIController::class, 'notificacionToken']);
+        /* solicitudes GET */
+        Route::get('solicitudesGet', [TenantAPIController::class, 'solicitudesGet']);
+        /* creditos GET */
+        Route::get('creditosGet', [TenantAPIController::class, 'creditosGet']);
     });
 });

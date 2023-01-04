@@ -15,6 +15,7 @@ use App\Models\tenant\Notificacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\tenant\EnviarNotificaion;
 
 class SolicitudCreditoController extends Controller
 {
@@ -85,9 +86,15 @@ class SolicitudCreditoController extends Controller
         /* dd($notificaciones); */
         foreach ($notificaciones as $notificacion) {
             $token = $notificacion->token;
-            $SERVER_API_KEY = 'AAAAqpLfBLQ:APA91bHv3ScDqlbT3V__n0UuXNPE0_2lcj7WuJV161TyYIjOPE78dYQJ20eU2pzKtuxsCpCrXQUHpbHDVezHGtdgl84ldl8iENaeksaR_TNePK3-GHiiV34GFx2X9QDB2QXOMvLZHhDZ';
+
+            $titulo = 'Nueva Solicitud de Credito';
+
+            $mensaje = 'Se ha creado una nueva solicitud de credito para el cliente: ' . $cliente->user->name . ', el usuario: ' . Auth::user()->name;
+
+            EnviarNotificaion::enviarNotificaion($token, $titulo, $mensaje);
+
+            /* $SERVER_API_KEY = 'AAAAqpLfBLQ:APA91bHv3ScDqlbT3V__n0UuXNPE0_2lcj7WuJV161TyYIjOPE78dYQJ20eU2pzKtuxsCpCrXQUHpbHDVezHGtdgl84ldl8iENaeksaR_TNePK3-GHiiV34GFx2X9QDB2QXOMvLZHhDZ';
             $data = [
-                /* "registration_ids" => $firebaseToken, */
                 "registration_ids" => [$token],
                 "notification" => [
                     "title" => 'Nueva Solicitud de Credito',
@@ -112,7 +119,7 @@ class SolicitudCreditoController extends Controller
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
 
-            $response = curl_exec($ch);
+            $response = curl_exec($ch); */
 
             /* dd($response); */
         }
@@ -144,7 +151,7 @@ class SolicitudCreditoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(SolicitudCredito $solicitud)
-    {   
+    {
         $solicitud->load('carpeta_credito');
         $solicitud->load('cliente');
         $solicitud->cliente->load('user');
@@ -155,7 +162,7 @@ class SolicitudCreditoController extends Controller
         $creditos = Credito::get();
         $detalle = CreditoDetalle::where('carpeta_id', $solicitud->carpeta_credito->id)->first();
 
-        return view('tenant.solicitudes.edit', compact('solicitud', 'clientes','creditos', 'detalle'));
+        return view('tenant.solicitudes.edit', compact('solicitud', 'clientes', 'creditos', 'detalle'));
     }
 
     /**
@@ -201,62 +208,47 @@ class SolicitudCreditoController extends Controller
                 . $solicitud->cliente->user->name . ', el usuario: ' . Auth::user()->name,
         ]));
 
+        /* Notificaion */
+        $cliente = $solicitud->cliente->user->name;
+        $titulo = 'Solicitud de Credito Editada';
+        $notificaciones = Notificacion::all();
+        $mensaje = 'El usuario: ' . Auth::user()->name . ' ha editado una solicitud de credito del cliente: ' . $cliente;
+        /* dd($notificaciones); */
+        foreach ($notificaciones as $notificacion) {
+            $token = $notificacion->token;
+            EnviarNotificaion::enviarNotificaion($token, $titulo, $mensaje);
+        }
+
         return redirect()->route('tenant.solicitudes.index', tenant('id'));
     }
 
-    
+
     public function destroy(SolicitudCredito $solicitud)
     {
         event(new RegistrarBitacoraTenant([
             'accion' => 'Eliminó una solicitud de credito del cliente: '
                 . $solicitud->cliente->user->name . ', el usuario: ' . Auth::user()->name,
         ]));
+
+        /* Notificaion */
+        $cliente = $solicitud->cliente->user->name;
+        $titulo = 'Solicitud de Credito Eliminada';
+        $notificaciones = Notificacion::all();
+        $mensaje = 'El usuario: ' . Auth::user()->name . ' ha eliminado una solicitud de credito del cliente: ' . $cliente;
+        /* dd($notificaciones); */
+        foreach ($notificaciones as $notificacion) {
+            $token = $notificacion->token;
+            EnviarNotificaion::enviarNotificaion($token, $titulo, $mensaje);
+        }
+
         $solicitud->delete();
-        
+
         return redirect()->route('tenant.solicitudes.index', tenant('id'));
     }
 
-    public function notificacion()
+    public function showDocuments($carpetaId)
     {
-        $notificaciones = Notificacion::all();
-        foreach ($notificaciones as $notificacion) {
-            $token = $notificacion->token;
-            $SERVER_API_KEY = 'AAAAqpLfBLQ:APA91bHv3ScDqlbT3V__n0UuXNPE0_2lcj7WuJV161TyYIjOPE78dYQJ20eU2pzKtuxsCpCrXQUHpbHDVezHGtdgl84ldl8iENaeksaR_TNePK3-GHiiV34GFx2X9QDB2QXOMvLZHhDZ';
-            $data = [
-                /* "registration_ids" => $firebaseToken, */
-                "registration_ids" => [$token],
-                "notification" => [
-                    "title" => 'Nueva Solicitud de Credito',
-                    "body" => 'Se ha creado una nueva solicitud de credito',
-                    "content_available" => true,
-                    "priority" => "high",
-                ]
-            ];
-            $dataString = json_encode($data);
-
-            $headers = [
-                'Authorization: key=' . $SERVER_API_KEY,
-                'Content-Type: application/json',
-            ];
-
-            $ch = curl_init();
-
-            curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
-
-            $response = curl_exec($ch);
-
-            /* dd($response); */
-        }
-    }
-    
-    public function showDocuments($carpetaId) {
         $documentos = Documento::where('carpeta_id', $carpetaId)->get();
         return view('tenant.documentos.index', compact('documentos', 'carpetaId'));
     }
-
 }

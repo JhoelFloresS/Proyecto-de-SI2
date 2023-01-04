@@ -11,7 +11,10 @@ use App\Models\tenant\User;
 use App\Models\tenant\Departamento;
 /* cliente */
 use App\Models\tenant\Cliente;
+use App\Models\tenant\Credito;
 use Illuminate\Support\Facades\Auth;
+/* solicitud */
+use App\Models\tenant\SolicitudCredito;
 
 class TenantAPIController extends Controller
 {
@@ -31,7 +34,8 @@ class TenantAPIController extends Controller
         return $clientes;
     }
 
-    public function notificacionToken(Request $request){
+    public function notificacionToken(Request $request)
+    {
         $user_id = Auth::user()->id;
         $tokenNotification = $request->tokenNotification;
         Notificacion::create([
@@ -42,5 +46,26 @@ class TenantAPIController extends Controller
             'status' => true,
             'message' => 'Token registrado correctamente'
         ], 200);
+    }
+
+    public function solicitudesGet()
+    {
+        $solicitudes = SolicitudCredito::all();
+        /* $usuarios = User::all();
+        $clientes = Cliente::all(); */
+        foreach ($solicitudes as $solicitud) {
+            $nombre = Cliente::find($solicitud->cliente_id)->user->name;
+            /* $cliente = $solicitud->cliente->user->name; */
+            /* $dato = $usuario->id; */
+            $solicitud->cliente = $nombre;
+            /* $solicitud->credito; */
+        }
+        return $solicitudes;
+    }
+
+    public function creditosGet()
+    {
+        $creditos = Credito::all();
+        return $creditos;
     }
 }
