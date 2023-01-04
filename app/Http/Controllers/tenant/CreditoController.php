@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\tenant\Credito;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\tenant\Notificacion;
+use App\Models\tenant\EnviarNotificaion;
 
 class CreditoController extends Controller
 {
@@ -35,6 +37,16 @@ class CreditoController extends Controller
                 . Auth::user()->name,
         ]));
 
+        /* Notificaion */
+        $titulo = 'Nuevo credito';
+        $notificaciones = Notificacion::all();
+        $mensaje = 'Se ha creado un nuevo credito para la empresa. Nombre del credito: '.$request->nombre;
+        /* dd($notificaciones); */
+        foreach ($notificaciones as $notificacion) {
+            $token = $notificacion->token;
+            EnviarNotificaion::enviarNotificaion($token, $titulo, $mensaje);
+        }
+
         return redirect()->route('tenant.creditos.index', tenant('id'));
     }
 
@@ -56,6 +68,16 @@ class CreditoController extends Controller
                 . Auth::user()->name,
         ]));
 
+        /* Notificaion */
+        $titulo = 'Credito editado';
+        $notificaciones = Notificacion::all();
+        $mensaje = 'Se ha editado el credito: '.$credito->nombre;
+        /* dd($notificaciones); */
+        foreach ($notificaciones as $notificacion) {
+            $token = $notificacion->token;
+            EnviarNotificaion::enviarNotificaion($token, $titulo, $mensaje);
+        }
+
         return redirect()->route('tenant.creditos.index', tenant('id'));
     }
 
@@ -68,6 +90,15 @@ class CreditoController extends Controller
     public function destroy(Credito $credito)
     {
         //
+        /* Notificaion */
+        $titulo = 'Credito eliminado';
+        $notificaciones = Notificacion::all();
+        $mensaje = 'Se ha eliminado el credito: '.$credito->nombre;
+        /* dd($notificaciones); */
+        foreach ($notificaciones as $notificacion) {
+            $token = $notificacion->token;
+            EnviarNotificaion::enviarNotificaion($token, $titulo, $mensaje);
+        }
         $credito->delete();
         return redirect()->route('tenant.creditos.index', tenant('id'));
     }

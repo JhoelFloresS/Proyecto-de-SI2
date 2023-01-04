@@ -38,10 +38,10 @@
 </head>
 
 <body
-
     class="m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-gray-50 text-slate-500">
     <div class="absolute w-full bg-blue-500 dark:hidden min-h-75"></div>
     <!-- partial:index.partial.html -->
+
     <x-dashboard.aside></x-dashboard.aside>
 
     <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl">
@@ -124,6 +124,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
     <!-- partial -->
@@ -136,7 +137,19 @@
 
 
     {{-- datatable --}}
+    @php
+        $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        //get the las part of url
+        $actual_link = explode('/', $actual_link);
+        $actual_link = end($actual_link);
+        
+        echo $actual_link;
+    @endphp
+    @if ($actual_link != 'diagramas')
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        
+    @endif
+
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script> --}}
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
