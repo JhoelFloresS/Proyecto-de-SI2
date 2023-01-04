@@ -37,6 +37,11 @@ Route::prefix('/{tenant}')->middleware([
         return view('tenant.dashboard');
     })->middleware(['auth', 'auth.session'])->name('tenant.dashboard');
 
+    //diagramas
+    Route::get('/diagramas', [App\Http\Controllers\tenant\DiagramaController::class, 'index'])
+        ->middleware(['auth', 'auth.session'])->name('tenant.diagramas');
+
+
     //backups
     Route::get('/backups', [App\Http\Controllers\tenant\BackupController::class, 'index'])
         ->middleware(['auth', 'auth.session'])->middleware('can:backups')->name('tenant.backups');

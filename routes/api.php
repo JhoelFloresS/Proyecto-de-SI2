@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticatedAPIController;
 use App\Http\Controllers\central\CentralAPIController;
 use App\Http\Controllers\tenant\TenantAPIController;
+use App\Http\Controllers\tenant\DiagramaController;
 
 use Spatie\Permission\Contracts\Role;
 use Stancl\Tenancy\Middleware\InitializeTenancyByPath;
@@ -63,4 +64,10 @@ Route::prefix('/{tenant}')->middleware([
         /* notificaion */
         Route::post('notificacionToken', [TenantAPIController::class, 'notificacionToken']);
     });
+
+
+    Route::get('diagramas', [DiagramaController::class, 'show']);
+    Route::post('diagramas/store', [DiagramaController::class, 'store']);
+    Route::put('diagramas/{id}/update', [DiagramaController::class, 'update']);
+    Route::delete('diagramas/{id}/delete', [DiagramaController::class, 'destroy']);
 });
