@@ -1,0 +1,123 @@
+{
+  "resources/fonts/nucleo-icons.eot": {
+    "file": "assets/nucleo-icons.f899f875.eot",
+    "src": "resources/fonts/nucleo-icons.eot"
+  },
+  "resources/fonts/nucleo-icons.woff2": {
+    "file": "assets/nucleo-icons.3180896c.woff2",
+    "src": "resources/fonts/nucleo-icons.woff2"
+  },
+  "resources/fonts/nucleo-icons.woff": {
+    "file": "assets/nucleo-icons.daa807b2.woff",
+    "src": "resources/fonts/nucleo-icons.woff"
+  },
+  "resources/fonts/nucleo-icons.ttf": {
+    "file": "assets/nucleo-icons.655956cd.ttf",
+    "src": "resources/fonts/nucleo-icons.ttf"
+  },
+  "resources/fonts/nucleo-icons.svg": {
+    "file": "assets/nucleo-icons.21030e24.svg",
+    "src": "resources/fonts/nucleo-icons.svg"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app.5655f3ca.js",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "imports": [
+      "__commonjsHelpers.b8add541.js",
+      "_index.f0052de0.js",
+      "_module.esm.1da87a7a.js"
+    ]
+  },
+  "resources/js/landing.js": {
+    "file": "assets/landing.2a199d7c.js",
+    "src": "resources/js/landing.js",
+    "isEntry": true
+  },
+  "resources/js/formulario.js": {
+    "file": "assets/formulario.55700ecc.js",
+    "src": "resources/js/formulario.js",
+    "isEntry": true,
+    "imports": [
+      "_module.esm.1da87a7a.js"
+    ]
+  },
+  "resources/js/argon-dashboard-tailwind.js": {
+    "file": "assets/argon-dashboard-tailwind.020bf30d.js",
+    "src": "resources/js/argon-dashboard-tailwind.js",
+    "isEntry": true
+  },
+  "resources/js/personalizacion/index.js": {
+    "file": "assets/index.f02bc615.js",
+    "src": "resources/js/personalizacion/index.js",
+    "isEntry": true,
+    "imports": [
+      "_module.esm.1da87a7a.js",
+      "_index.f0052de0.js",
+      "__commonjsHelpers.b8add541.js"
+    ]
+  },
+  "resources/ts/diagramas.ts": {
+    "file": "assets/diagramas.6b4fc1dd.js",
+    "src": "resources/ts/diagramas.ts",
+    "isEntry": true,
+    "imports": [
+      "__commonjsHelpers.b8add541.js"
+    ]
+  },
+  "resources/js/diagramas.js": {
+    "file": "assets/diagramas.b66f45d0.js",
+    "src": "resources/js/diagramas.js",
+    "isEntry": true,
+    "imports": [
+      "_module.esm.1da87a7a.js"
+    ]
+  },
+  "_index.f0052de0.js": {
+    "file": "assets/index.f0052de0.js",
+    "imports": [
+      "__commonjsHelpers.b8add541.js"
+    ]
+  },
+  "_module.esm.1da87a7a.js": {
+    "file": "assets/module.esm.1da87a7a.js"
+  },
+  "__commonjsHelpers.b8add541.js": {
+    "file": "assets/_commonjsHelpers.b8add541.js"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app.142d0059.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/css/diagramas.css": {
+    "file": "assets/diagramas.24e752ae.css",
+    "src": "resources/css/diagramas.css",
+    "isEntry": true
+  },
+  "resources/css/dashboard.css": {
+    "file": "assets/dashboard.315febef.css",
+    "src": "resources/css/dashboard.css",
+    "isEntry": true
+  },
+  "resources/css/nucleo-icons.css": {
+    "file": "assets/nucleo-icons.bff958c1.css",
+    "src": "resources/css/nucleo-icons.css",
+    "isEntry": true
+  },
+  "resources/css/formulario.css": {
+    "file": "assets/formulario.a225d31b.css",
+    "src": "resources/css/formulario.css",
+    "isEntry": true
+  },
+  "resources/css/landing.css": {
+    "file": "assets/landing.e9addee4.css",
+    "src": "resources/css/landing.css",
+    "isEntry": true
+  },
+  "resources/css/argon-dashboard-tailwind.css": {
+    "file": "assets/argon-dashboard-tailwind.c209f0fe.css",
+    "src": "resources/css/argon-dashboard-tailwind.css",
+    "isEntry": true
+  }
+}
