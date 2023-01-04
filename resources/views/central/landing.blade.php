@@ -28,7 +28,7 @@
                 <li><a href="#resultados">Resultados</a></li>
                 <li><a href="#ubicacion">Ubicacion</a></li> -->
                 <li><a href="#subscribe">Subscribete</a></li>
-                <li><a href="/shop">Tienda</a></li>
+                {{-- <li><a href="/shop">Tienda</a></li> --}}
                 <li><a href="{{ route('login-buscador') }}" target="_blank">Ingresar</a></li>
                 {{--  <li><a href="{{ route('register') }}" target="_blank">Registrar</a></li>  --}}
                 <div class="cancel-btn">
@@ -107,8 +107,8 @@
                 <div class="container">
                     <div class="hero-inner">
                         <div class="hero-copy">
-                            <h1 class="hero-title mt-0">Esta es la pagina principal</h1>
-                            <p class="hero-paragraph">Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever.</p>
+                            <h1 class="hero-title mt-0">Una salida a tus problemas </h1>
+                            <p class="hero-paragraph">Moderniza los procesos de negocios, y consigue las metas de un verdadero equipo de prestacion de creditos</p>
                             <!-- <div class="hero-form field field-grouped">
                                 <div class="control control-expanded">
                                     <input class="input" type="email" name="email" placeholder="Your best email&hellip;">
@@ -326,8 +326,8 @@
                     <div class="features-inner section-inner">
                         <div class="features-header text-center">
                             <div class="container-sm">
-                                <h2 class="section-title mt-0">Meet April</h2>
-                                <p class="section-paragraph">Lorem ipsum is common placeholder text used to demonstrate the graphic elements of a document or visual presentation.</p>
+                                <h2 class="section-title mt-0">Accede a nuestros planes de suscripcion</h2>
+                                <p class="section-paragraph">Precios que se escalan con su negocio de inmediato.</p>
                             </div>
                         </div>
                         <div class="features-wrap">
@@ -444,7 +444,7 @@
                                             <img class="mb-16" src="dist/images/testimonial-01.png" alt="Testimonial">
                                         </div>
                                         <div class="testimonial-body">
-                                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                                            <p class="mb-0">Gracias crediflow me cambiaste la vida.</p>
                                         </div>
                                     </div>
                                     <div class="testimonial-footer">
@@ -461,7 +461,7 @@
                                             <img class="mb-16" src="dist/images/testimonial-02.png" alt="Testimonial">
                                         </div>
                                         <div class="testimonial-body">
-                                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                                            <p class="mb-0">Ta fachera la empresa 10 de 10 .</p>
                                         </div>
                                     </div>
                                     <div class="testimonial-footer">
@@ -478,7 +478,7 @@
                                             <img class="mb-16" src="dist/images/testimonial-03.png" alt="Testimonial">
                                         </div>
                                         <div class="testimonial-body">
-                                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                                            <p class="mb-0">La mejor solucion que puestes elejir, no te arrepentiras.</p>
                                         </div>
                                     </div>
                                     <div class="testimonial-footer">
@@ -497,8 +497,8 @@
                 <div class="container-sm">
                     <div class="newsletter-inner section-inner">
                         <div class="newsletter-header text-center">
-                            <h2 class="section-title mt-0">Stay in the know</h2>
-                            <p class="section-paragraph">Lorem ipsum is common placeholder text used to demonstrate the graphic elements of a document or visual presentation.</p>
+                            <h2 class="section-title mt-0"></h2>
+                            <p class="section-paragraph">Copyright © CrediFlow 2022.</p>
                         </div>
                         <!-- <div class="footer-form newsletter-form field field-grouped">
                             <div class="control control-expanded">
@@ -585,7 +585,7 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="footer-copyright">&copy; 2018 April, all rights reserved</div>
+                    <div class="footer-copyright">&copy; 2022 , all rights reserved</div>
                 </div>
             </div>
         </footer>

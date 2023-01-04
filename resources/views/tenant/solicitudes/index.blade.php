@@ -12,9 +12,10 @@
 
                 <!-- button crear usuario "a" style css -->
                 <a class="bg-gradient-to-tl from-blue-500 to-violet-500 text-white px-4 py-2 rounded-lg shadow-md" style="width: 150px; text-align: center; margin-left: 20px;" href="{{ route('tenant.solicitudes.create',tenant('id')) }}">Crear solicitud</a>
+                <br>
                 <div class="flex-auto px-0 pt-0 pb-2">
                     <div class="p-0 overflow-x-auto">
-                        <table class="items-center w-full mb-0 align-top border-collapse dark:border-white/40 text-slate-500">
+                        <table id="tabla" class="items-center w-full mb-0 align-top border-collapse dark:border-white/40 text-slate-500">
                             <thead class="align-bottom">
                                 <tr>
                                     <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
